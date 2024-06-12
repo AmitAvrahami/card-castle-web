@@ -1,6 +1,6 @@
-// frontend/src/App.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
+import './App.css';
 
 const App = () => {
   const [cards, setCards] = useState([]);
@@ -17,52 +17,60 @@ const App = () => {
       });
   }, []);
 
+  const removeDuplicates = (array, key) => {
+    return array.filter((item, index, self) =>
+      index === self.findIndex(obj => obj[key] === item[key])
+    );
+  };
+
+  const filterSetsWithCards = useCallback((setsData) => {
+    if (cards.length === 0) {
+      return [];
+    }
+
+    // Collect unique set names from card_sets
+    const cardSetNames = cards.reduce((setNames, card) => {
+      if (card.card_sets) {
+        card.card_sets.forEach(set => {
+          if (!setNames.includes(set.set_name)) {
+            setNames.push(set.set_name);
+          }
+        });
+      }
+      return setNames;
+    }, []);
+
+    // Filter sets based on whether they appear in cardSetNames
+    return setsData.filter(set => cardSetNames.includes(set.set_name));
+  }, [cards]);
+
   useEffect(() => {
     axios.get('http://localhost:5000/api/sets')
       .then(response => {
-        setSets(response.data);
-        console.log('Sets fetched:', response.data); // Debugging
+        const setsWithImages = response.data.filter(set => set.set_image);
+        const uniqueSets = removeDuplicates(setsWithImages, 'set_code')
+        console.log('unique Sets:', uniqueSets.length); // Debugging
+        ;
+        const validSets = filterSetsWithCards(uniqueSets);
+        setSets(validSets);
+        console.log('Valid Sets:', validSets.length); // Debugging
       })
       .catch(error => {
         console.error('There was an error fetching the sets!', error);
       });
-  }, []);
+  }, [filterSetsWithCards]);
 
   return (
-    <div>
-      <h1>Yu-Gi-Oh! Cards</h1>
-      <ul>
-        {cards.map(card => (
-          <li key={card.id} style={{ marginBottom: '20px' }}>
-            <h2>{card.name}</h2>
-            {card.card_images && card.card_images.length > 0 && (
-              <img src={card.card_images[0].image_url} alt={card.name} style={{ width: '200px', height: '300px' }} />
-            )}
-            {card.card_sets && card.card_sets.length > 0 && (
-              <div>
-                <h3>Set Names:</h3>
-                <ul>
-                  {card.card_sets.map((cardSet, index) => {
-                    const set = sets.find(s => s.set_name === cardSet.set_name);
-                    return (
-                      <li key={index} style={{ marginBottom: '10px' }}>
-                        <div>
-                          {set && set.set_image ? (
-                            <img src={set.set_image} alt={set.set_name} style={{ width: '100px', height: '200px' }} />
-                          ) : null}
-                          <div>{cardSet.set_name}</div>
-                          <div>{cardSet.set_rarity}</div>
-                          <div>{cardSet.set_price}</div>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            )}
-          </li>
+    <div className="container">
+      <h1>Card Castle Yu-Gi-Oh!</h1>
+      <div className="grid-container">
+        {sets.map((set, index) => (
+          <div key={index} className="grid-item">
+            <img src={set.set_image} alt={set.set_name} style={{ width: '50px', height: '100px' }} />
+            <div>{set.set_name}</div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
