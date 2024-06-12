@@ -9,7 +9,7 @@ const YGO_API_URL = 'https://db.ygoprodeck.com/api/v7';
 router.get('/cards', async (req, res) => {
     try {
         const response = await axios.get(YGO_API_URL + "/cardinfo.php");
-        const cards = response.data.data.slice(0, 250); // Assuming the API returns an array in response.data.data
+        const cards = response.data.data.slice(0, 1500);
         res.json(cards);
     } catch (error) {
         console.error('Error fetching cards:', error);
@@ -20,7 +20,7 @@ router.get('/cards', async (req, res) => {
 router.get('/sets', async (req, res) => {
     try {
         const response = await axios.get(YGO_API_URL + "/cardsets.php");
-        const cards = response.data.data.slice(0, 50); // Assuming the API returns an array in response.data.data
+        const cards = response.data
         res.json(cards);
     } catch (error) {
         console.error('Error fetching cards:', error);
