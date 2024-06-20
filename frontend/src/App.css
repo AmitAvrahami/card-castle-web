@@ -44,7 +44,7 @@
   align-items: center;
   min-height: 100vh;
   flex-direction: column;
-  background-color: #FFD8B1;
+  background-color: #d4a373;
 }
 
 .grid-container {
@@ -59,7 +59,7 @@
   margin-right: 150px;
   margin-left: 150px;
   margin-bottom: 20px;
-
+  background-color: #faedcd;
 }
 
 .grid-item {
