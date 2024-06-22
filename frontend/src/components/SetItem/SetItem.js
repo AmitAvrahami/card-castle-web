@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import "./SetItem.css";
 import { Link, useParams } from "react-router-dom";
 
-function SetItem({ src, setName, numOfCards, setId }) {
+function SetItem({ set }) {
   const [isActive, setIsActive] = useState(false);
 
   const handleMouseDown = () => setIsActive(true);
@@ -14,14 +14,14 @@ function SetItem({ src, setName, numOfCards, setId }) {
   return (
     <div className="set-item-container">
       <Card style={{ width: "18rem", backgroundColor: "#FEFAE0" }}>
-        <Card.Img variant="top" src={src} className="card-img-top" />
+        <Card.Img variant="top" src={set.set_image} className="card-img-top" />
         <Card.Body>
-          <Card.Title className="card-title">{setName}</Card.Title>
+          <Card.Title className="card-title">{set.set_name}</Card.Title>
           <Card.Text className="card-text">
-            Number of cards in the set: {numOfCards}
+            Number of cards in the set: {set.num_of_cards}
           </Card.Text>
           <Link
-            to={`/cards-of-set/${setId}`}
+            to={`/cards-of-set/${set.set_code}/${set.set_name}`}
             style={{ textDecoration: "none" }}
           >
             <Button

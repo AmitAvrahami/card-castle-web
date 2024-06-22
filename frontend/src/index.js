@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/cards-of-set/:setID",
+    path: "/cards-of-set/:setID/:setName",
     element: <CardsOfSet />,
   },
 ]);
