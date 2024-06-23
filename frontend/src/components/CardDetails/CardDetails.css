@@ -1,0 +1,61 @@
+/* CardDetails.css */
+
+.card-details-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.card-details-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.card-info {
+    display: flex;
+    align-items: flex-start;
+}
+
+.card-image {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.price-button {
+    margin-top: 10px;
+}
+
+.price-btn {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.price-btn:hover {
+    background-color: #0056b3;
+}
+
+.card-stats {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.card-stats p {
+    margin-bottom: 5px;
+}
+
+.card-description {
+    margin-top: 20px;
+}
+
+.card-description h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}

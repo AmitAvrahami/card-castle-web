@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CardsOfSet from "./pages/CardsOfSetPage";
 import { CardsProvider } from "./components/context/cardsProvider";
+import CardDetails from "./components/CardDetails/CardDetails";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/cards-of-set/:setID/:setName",
     element: <CardsOfSet />,
+  },
+  {
+    path: "/card/:cardId",
+    element: <CardDetails />,
   },
 ]);
 
