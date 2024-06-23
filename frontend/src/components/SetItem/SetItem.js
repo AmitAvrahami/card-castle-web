@@ -4,12 +4,18 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "./SetItem.css";
 import { Link, useParams } from "react-router-dom";
+import { useCardsContext } from "../context/cardsProvider";
 
 function SetItem({ set }) {
   const [isActive, setIsActive] = useState(false);
+  const { setSelectedSet } = useCardsContext();
 
   const handleMouseDown = () => setIsActive(true);
   const handleMouseUp = () => setIsActive(false);
+
+  const handleSetClick = () => {
+    setSelectedSet(set);
+  };
 
   return (
     <div className="set-item-container">
@@ -34,6 +40,7 @@ function SetItem({ set }) {
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
+              onClick={handleSetClick}
             >
               Go to Cards of Set Page
             </Button>

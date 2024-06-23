@@ -4,32 +4,41 @@ import { useState, useEffect } from "react";
 
 function CardsOfSet() {
   const { setID, setName } = useParams();
-  const allCards = useCardsContext(); // This will be the array of cards
-  const [cards, setCards] = useState([]);
+  const { cards, selectedSet } = useCardsContext(); // This will be the array of cards
+  const [filteredCards, setFilteredCards] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const filteredCards = allCards.filter((card) => {
-      return (
-        card.card_sets &&
-        card.card_sets.some((set) => {
-          const setCodePrefix = set.set_code.split("-")[0];
-          return setCodePrefix === setID && set.set_name === setName;
-        })
-      );
-    });
+    if (cards && cards.length > 0) {
+      const filtered = cards.filter((card) => {
+        return (
+          card.card_sets &&
+          card.card_sets.some((set) => {
+            const setCodePrefix = set.set_code.split("-")[0];
+            return setCodePrefix === setID && set.set_name === setName;
+          })
+        );
+      });
+      setFilteredCards(filtered);
+      setLoading(false); // Data processing is complete, set loading to false
+    }
+  }, [setID, setName, cards]);
 
-    setCards(filteredCards);
-  }, [setID, allCards]);
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
 
-  if (cards.length === 0) {
+  if (filteredCards.length === 0) {
     return <h1>No cards found for this set.</h1>;
   }
 
+  console.log("selected set", selectedSet);
   return (
     <div>
-      <h1>Cards of Set {setName}</h1>
+      <h1>Cards of Set {`${setName}(${setID})`}</h1>
+      <h2>selected set: {selectedSet ? `${selectedSet.set_name}` : "Not available"}</h2>
       <div className="card-list">
-        {cards.map((card) => (
+        {filteredCards.map((card) => (
           <div key={card.id} className="card-item">
             <Link to={`/card/${card.id}`}>
               <img src={card.card_images[0].image_url_small} alt={card.name} />
