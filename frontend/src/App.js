@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import Pagination from "./components/Pagination";
 import SetItem from "./components/SetItem/SetItem";
+import titleImage from './images/card-castle-yu-gi-oh-font-title.png';
 
 const App = () => {
   const [sets, setSets] = useState([]);
@@ -26,12 +27,17 @@ const App = () => {
   const currentSets = sets.slice(indexOfFirstSet, indexOfLastSet);
 
   return (
-    <div className="container">
-      <h1 className="heading">Card Castle Yu-Gi-Oh!</h1>
-      <div className="grid-container">
-        {currentSets.map((set, index) => (
-          <SetItem key={index} set={set}></SetItem>
-        ))}
+    <div className="origin-container">
+      <img src={titleImage} alt="Card Castle Yu-Gi-Oh!" className="heading-image" />
+
+      <div className="container">
+
+
+        <div className="grid-container">
+          {currentSets.map((set, index) => (
+            <SetItem key={index} set={set}></SetItem>
+          ))}
+        </div>
       </div>
       <Pagination
         totalSets={sets.length}

@@ -7,7 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CardsOfSet from "./pages/CardsOfSetPage";
 import { CardsProvider } from "./components/context/cardsProvider";
-import CardDetails from "./components/CardDetails/CardDetails";
+import CardDetails from "./pages/CardDetails/CardDetails";
 
 const router = createBrowserRouter([
   {
