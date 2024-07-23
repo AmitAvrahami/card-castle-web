@@ -5,6 +5,7 @@
   min-height: 100vh;
   flex-direction: column;
   background-color: white;
+  margin-top: 10px;
 }
 
 .heading-image {

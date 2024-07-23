@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useCardsContext } from "../components/context/cardsProvider";
 import { useState, useEffect } from "react";
+import NavScrollBar from "../NavScrollBar/NavScrollBar";
 
 function CardsOfSet() {
   const { setID, setName } = useParams();
@@ -35,6 +36,7 @@ function CardsOfSet() {
   console.log("selected set", selectedSet);
   return (
     <div>
+      <NavScrollBar></NavScrollBar>
       <h1>Cards of Set {`${setName}(${setID})`}</h1>
       <h2>selected set: {selectedSet ? `${selectedSet.set_name}` : "Not available"}</h2>
       <div className="card-list">

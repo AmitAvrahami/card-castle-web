@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import Pagination from "./components/Pagination";
 import SetItem from "./components/SetItem/SetItem";
 import titleImage from './images/card-castle-yu-gi-oh-font-title.png';
+import NavScrollBar from './NavScrollBar/NavScrollBar';
 
 const App = () => {
   const [sets, setSets] = useState([]);
@@ -15,7 +16,7 @@ const App = () => {
       .get("http://localhost:5000/api/sets")
       .then((response) => {
         setSets(response.data);
-        console.log("Sets fetched:", response.data); // Debugging
+        console.log("Sets fetched:", response.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the sets!", error);
@@ -28,14 +29,12 @@ const App = () => {
 
   return (
     <div className="origin-container">
+      <NavScrollBar />
       <img src={titleImage} alt="Card Castle Yu-Gi-Oh!" className="heading-image" />
-
       <div className="container">
-
-
         <div className="grid-container">
           {currentSets.map((set, index) => (
-            <SetItem key={index} set={set}></SetItem>
+            <SetItem key={index} set={set} />
           ))}
         </div>
       </div>

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useCardsContext } from "../../components/context/cardsProvider";
 import { useEffect, useState } from "react";
 import "./CardDetails.css";
+import NavScrollBar from "../../NavScrollBar/NavScrollBar";
 
 function CardDetails() {
     const { cardId } = useParams();
@@ -28,8 +29,9 @@ function CardDetails() {
     }
 
     return (
-        <div className="origin-container">
 
+        <div className="origin-container">
+            <NavScrollBar></NavScrollBar>
 
             <div className="card-details-container">
                 <div className="card-info">
