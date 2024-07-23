@@ -47,7 +47,7 @@ function NavScrollBar({ cards }) {
                         </Nav>
                         <Form className="d-flex">
                             <Button variant="outline-success" onClick={() => setModalShow(true)}>
-                                Search
+                                Search Card
                             </Button>
                         </Form>
                     </Navbar.Collapse>
