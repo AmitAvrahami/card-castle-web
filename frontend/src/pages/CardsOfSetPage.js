@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCardsContext } from "../components/context/cardsProvider";
 import { useState, useEffect } from "react";
+import NavScrollBar from "../NavScrollBar/NavScrollBar";
 import "./CardsOfSetPage.css"; // Ensure you import the CSS file
 
 function CardsOfSet() {
@@ -29,6 +30,10 @@ function CardsOfSet() {
   }
 
   return (
+    <div>
+      <NavScrollBar></NavScrollBar>
+      <h1>Cards of Set {`${setName}(${setID})`}</h1>
+      <h2>selected set: {selectedSet ? `${selectedSet.set_name}` : "Not available"}</h2>
     <div className="page-container">
       <h1 className="main-title">Cards of Set {`${setName}(${setID})`}</h1>
       <h2 className="sub-title">
