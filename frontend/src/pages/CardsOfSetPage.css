@@ -1,0 +1,60 @@
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(100px, 0.1fr));
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
+}
+
+.main-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: bold;
+}
+
+.sub-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  font-size: medium;
+}
+
+.sub-title ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sub-title li {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  position: relative;
+}
+
+.sub-title li:not(:last-child)::after {
+  content: "•";
+  margin-left: 8px;
+}
+
+.card-item img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.card-item h2 {
+  font-size: 0.9em;
+  margin: 0;
+  color: #333;
+}
+
+.card-item p {
+  font-size: 0.9em;
+  color: #666;
+}
