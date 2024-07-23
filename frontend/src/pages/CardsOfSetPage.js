@@ -33,25 +33,32 @@ function CardsOfSet() {
     <div>
       <NavScrollBar></NavScrollBar>
       <h1>Cards of Set {`${setName}(${setID})`}</h1>
-      <h2>selected set: {selectedSet ? `${selectedSet.set_name}` : "Not available"}</h2>
-    <div className="page-container">
-      <h1 className="main-title">Cards of Set {`${setName}(${setID})`}</h1>
-      <h2 className="sub-title">
-        <ul>
-          <li>{selectedSet.set_name} cards</li>
-          <li>{selectedSet.set_code} cards</li>
-          <li>Released {selectedSet.tcg_date}</li>
-        </ul>
+      <h2>
+        selected set:{" "}
+        {selectedSet ? `${selectedSet.set_name}` : "Not available"}
       </h2>
-      <div className="card-list">
-        {filteredCards.map((card) => (
-          <div key={card.id} className="card-item">
-            <Link to={`/card/${card.id}`}>
-              <img src={card.card_images[0].image_url_small} alt={card.name} />
-              <h2>{card.name}</h2>
-            </Link>
-          </div>
-        ))}
+      <div className="page-container">
+        <h1 className="main-title">Cards of Set {`${setName}(${setID})`}</h1>
+        <h2 className="sub-title">
+          <ul>
+            <li>{selectedSet.set_name} cards</li>
+            <li>{selectedSet.set_code} cards</li>
+            <li>Released {selectedSet.tcg_date}</li>
+          </ul>
+        </h2>
+        <div className="card-list">
+          {filteredCards.map((card) => (
+            <div key={card.id} className="card-item">
+              <Link to={`/card/${card.id}`}>
+                <img
+                  src={card.card_images[0].image_url_small}
+                  alt={card.name}
+                />
+                <h2>{card.name}</h2>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
