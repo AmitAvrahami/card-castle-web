@@ -1,27 +1,23 @@
 // backend/src/index.js
-const express = require("express");
-const cors = require("cors");
+const express = require('express')
+const cors = require("cors")
+const cookieParser = require('cookie-parser');
 
 const apiRoutes = require("./routes/api");
+const authRoutes = require("./routes/auth")
 
 const app = express();
 const port = 5000;
 
-const URI = "mongodb+srv://yugioh:123sdnkuj@cluster0.nh9e91t.mongodb.net/yugioh"
-mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('mongoDB connected'))
-  .catch(err => console.log(err))
-
-const dataSchema = new mongoose.Schema({
-  name: String,
-  id: String
-})
-
-const Data = mongoose.model('dataTable', dataScheme)
-
-app.use(cors());
+app.use(cors({
+  origin: [`http://localhost:3000`],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 app.use(express.json());
+app.use(cookieParser())
 app.use("/api", apiRoutes);
+app.use("/auth", authRoutes)
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

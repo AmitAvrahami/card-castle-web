@@ -1,16 +1,19 @@
+// LoginPage.js
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
 import React, { useState } from "react";
-import "./LoginPage.css";
 import axios from "axios";
+import "./LoginPage.css";
 
 function LoginPage(props) {
   const [newUser, setNewUser] = useState({
-    username: "",
+    email: "",
     password: "",
   });
+
+  axios.defaults.withCredentials = true;
 
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
@@ -24,19 +27,26 @@ function LoginPage(props) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // כדי שהעמוד לא יבצע קריאה מחדש לשרת
+    e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/users",
-        newUser
-      );
+      const response = await axios.post("http://localhost:5000/auth/login", newUser);
+      console.log("Logged in user: ", response.data);
       setMessageType("success");
-      setMessage("User registered successfully!");
-      console.log("user sent to DB", response.data);
+      setMessage("Login successful!"); // Updated message
+      if (response.data.status === "Success") {
+        if (response.data.role === "admin") {
+
+        } else {
+
+        }
+      }
     } catch (error) {
+      const errorMessage = error.response && error.response.data && error.response.data.message
+        ? error.response.data.message
+        : "An unexpected error occurred";
       setMessageType("danger");
-      setMessage("Error sending data: " + error.response.data.message);
-      console.log("error sending data", error);
+      setMessage(`Error sending data: ${errorMessage}`);
+      console.log("Error sending data", error);
     }
   };
 
@@ -48,16 +58,13 @@ function LoginPage(props) {
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email / Username</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
-              name="username"
+              name="email"
               type="email"
-              placeholder="Enter email or username"
+              placeholder="Enter Email"
               onChange={handleOnChange}
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -69,6 +76,7 @@ function LoginPage(props) {
               onChange={handleOnChange}
             />
           </Form.Group>
+
           <Button variant="primary" type="submit">
             Submit
           </Button>

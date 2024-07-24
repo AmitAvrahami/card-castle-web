@@ -9,6 +9,7 @@ import logo from "../images/card-castle-yu-gi-oh-logo.png";
 import "./NavScrollBar.css";
 import SearchModal from "../SearchModal/SearchModal";
 import LoginPage from "../pages/loginPage/LoginPage";
+import SignUpPage from "../pages/SignUpPage/SignUpPage";
 
 function NavScrollBar({ cards }) {
   const [modalShow, setModalShow] = useState(false);
@@ -58,7 +59,12 @@ function NavScrollBar({ cards }) {
               >
                 Login
               </Button>
-              <Button variant="outline-success">Sign Up</Button>
+              <Button
+                variant="outline-success"
+                onClick={() => setSignupScreenShow(true)}
+              >
+                Sign Up
+              </Button>
             </Form>
           </Navbar.Collapse>
         </Container>
@@ -67,7 +73,13 @@ function NavScrollBar({ cards }) {
       <LoginPage
         show={loginScreenShow}
         onHide={() => setLoginScreenShow(false)}
-      ></LoginPage>
+      />
+
+      <SignUpPage
+        show={signupScreenShow}
+        onHide={() => setSignupScreenShow(false)}
+      />
+
       <SearchModal
         show={modalShow}
         onHide={() => setModalShow(false)}
