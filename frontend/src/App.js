@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
-import Pagination from "./components/Pagination";
+import Pagination from "./components/pagination/Pagination";
 import SetItem from "./components/SetItem/SetItem";
-import titleImage from './images/card-castle-yu-gi-oh-font-title.png';
-import NavScrollBar from './NavScrollBar/NavScrollBar';
+import titleImage from "./images/card-castle-yu-gi-oh-font-title.png";
+import NavScrollBar from "./NavScrollBar/NavScrollBar";
 
 const App = () => {
   const [sets, setSets] = useState([]);
@@ -30,7 +30,11 @@ const App = () => {
   return (
     <div className="origin-container">
       <NavScrollBar />
-      <img src={titleImage} alt="Card Castle Yu-Gi-Oh!" className="heading-image" />
+      <img
+        src={titleImage}
+        alt="Card Castle Yu-Gi-Oh!"
+        className="heading-image"
+      />
       <div className="container">
         <div className="grid-container">
           {currentSets.map((set, index) => (

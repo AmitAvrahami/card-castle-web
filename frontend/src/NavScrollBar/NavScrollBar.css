@@ -1,75 +1,76 @@
 /* Space the Navbar content from the top of the page */
 .origin-container {
-    padding-top: 100px;
+  padding-top: 100px;
 }
 
 /* Ensures the Navbar is fixed at the top and takes the full width */
 .navbar-custom {
-    background-color: #BA7C55;
-    /* Change background color as needed */
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    /* Ensures Navbar stays above other content */
-    height: 100px;
+  background-color: #ba7c55;
+  /* Change background color as needed */
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  /* Ensures Navbar stays above other content */
+  height: 100px;
 }
 
 /* Styling for the logo image */
 .navbar-custom img {
-    height: 100px;
-    width: auto;
+  height: 100px;
+  width: auto;
 }
 
 /* Adjust padding and margin for Navbar contents */
 .navbar-custom .navbar-nav .nav-link {
-    color: #fff;
-    margin-right: 15px;
+  color: #fff;
+  margin-right: 15px;
 }
 
 .navbar-custom .navbar-nav .nav-link:hover {
-    color: #ddd;
+  color: #ddd;
 }
 
 .navbar-custom .navbar-brand {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .navbar-custom .form-control {
-    border-radius: 20px;
+  border-radius: 20px;
 }
 
 .navbar-custom .btn-outline-success {
-    border-radius: 20px;
-    color: #fff;
-    border-color: #fff;
+  border-radius: 20px;
+  color: #fff;
+  border-color: #fff;
+  margin: 10px;
 }
 
 .navbar-custom .btn-outline-success:hover {
-    background-color: #fff;
-    color: #BA7C55;
+  background-color: #fff;
+  color: #ba7c55;
 }
 
 /* Adjusting spacing for the Navbar toggle button */
 .navbar-custom .navbar-toggler {
-    border: none;
+  border: none;
 }
 
 .navbar-custom .navbar-toggler-icon {
-    background-image: url('data:image/svg+xml,...');
+  background-image: url("data:image/svg+xml,...");
 }
 
 /* Styling for the card links in the modal */
 .card-item {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .card-link {
-    color: #BA7C55;
-    text-decoration: none;
+  color: #ba7c55;
+  text-decoration: none;
 }
 
 .card-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

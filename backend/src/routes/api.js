@@ -2,7 +2,10 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
+const mongoose = require("mongoose");
 
+const URI_MDB =
+  "mongodb+srv://amitavxd3011:Amitxd3011@cluster0.cypywmh.mongodb.net/YO-GI-HO-DATA";
 const YGO_API_URL = "https://db.ygoprodeck.com/api/v7";
 
 // Get the first 250 cards
@@ -57,6 +60,30 @@ router.get("/sets", async (req, res) => {
   } catch (error) {
     console.error("Error fetching sets:", error);
     res.status(500).send("Error fetching sets");
+  }
+});
+
+mongoose
+  .connect(URI_MDB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
+
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+});
+
+const usersData = mongoose.model("usersTable", userSchema);
+
+router.post("/users", async (req, res) => {
+  const { username, password } = req.body;
+  const newUser = new usersData({ username, password });
+  console.log(newUser);
+  try {
+    const saveUser = await newUser.save();
+    res.json(saveUser);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
