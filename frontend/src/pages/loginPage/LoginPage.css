@@ -5,3 +5,15 @@
   justify-content: center;
   align-items: center;
 }
+
+.submit_btn {
+  display: inline-flex;
+  align-self: center;
+  justify-content: center;
+  background-color: hsl(23, 42%, 53%);
+  border: none;
+}
+
+.submit_btn:hover {
+  background-color: hsl(23, 42%, 73%);
+}

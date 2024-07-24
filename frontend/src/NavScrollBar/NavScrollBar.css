@@ -74,3 +74,11 @@
 .card-link:hover {
   text-decoration: underline;
 }
+
+.user-greeting {
+  justify-content: center;
+  font-size: medium;
+  font-weight: bold;
+  margin-top: 4%;
+  color: #fff;
+}

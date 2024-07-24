@@ -13,12 +13,13 @@ export const CardsProvider = ({ children }) => {
   const [cardSets, setCardSets] = useState([]);
   const [selectedSet, setSelectedSet] = useState(() => {
     // Try to get the selected set from local storage on initial load
-    const savedSet = localStorage.getItem('selectedSet');
+    const savedSet = localStorage.getItem("selectedSet");
     return savedSet ? JSON.parse(savedSet) : null;
   });
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/cards")
+    axios
+      .get("http://localhost:5000/api/cards")
       .then((response) => {
         setCards(response.data);
         setCardSets(response.data.cardSets); // Assuming response.data has cardSets
@@ -32,7 +33,7 @@ export const CardsProvider = ({ children }) => {
   useEffect(() => {
     // Save the selected set to local storage whenever it changes
     if (selectedSet) {
-      localStorage.setItem('selectedSet', JSON.stringify(selectedSet));
+      localStorage.setItem("selectedSet", JSON.stringify(selectedSet));
     }
   }, [selectedSet]);
 

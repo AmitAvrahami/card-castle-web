@@ -1,5 +1,6 @@
 // LoginPage.js
 import Button from "react-bootstrap/Button";
+import { useUserContext } from "../../components/context/userContext";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
@@ -15,6 +16,7 @@ function LoginPage(props) {
 
   axios.defaults.withCredentials = true;
 
+  const { user, setUser } = useUserContext();
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
 
@@ -26,24 +28,33 @@ function LoginPage(props) {
     });
   };
 
+  console.log(user, newUser);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/auth/login", newUser);
+      const response = await axios.post(
+        "http://localhost:5000/auth/login",
+        newUser
+      );
       console.log("Logged in user: ", response.data);
       setMessageType("success");
       setMessage("Login successful!"); // Updated message
       if (response.data.status === "Success") {
+        setUser(response.data.user);
+        setNewUser({
+          email: "",
+          password: "",
+        });
+        console.log("user login:" + user.name);
         if (response.data.role === "admin") {
-
         } else {
-
         }
       }
     } catch (error) {
-      const errorMessage = error.response && error.response.data && error.response.data.message
-        ? error.response.data.message
-        : "An unexpected error occurred";
+      const errorMessage =
+        error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : "An unexpected error occurred";
       setMessageType("danger");
       setMessage(`Error sending data: ${errorMessage}`);
       console.log("Error sending data", error);
@@ -51,7 +62,7 @@ function LoginPage(props) {
   };
 
   return (
-    <Modal {...props}>
+    <Modal {...props} dialogClassName="logout-modal">
       <Modal.Header closeButton>
         <Modal.Title>Login</Modal.Title>
       </Modal.Header>
@@ -77,7 +88,12 @@ function LoginPage(props) {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={props.onHide}
+            className="submit_btn"
+          >
             Submit
           </Button>
         </Form>

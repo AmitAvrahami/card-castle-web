@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useUserContext } from "../components/context/userContext";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -10,11 +11,19 @@ import "./NavScrollBar.css";
 import SearchModal from "../SearchModal/SearchModal";
 import LoginPage from "../pages/loginPage/LoginPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
+import LogoutConfirmationModal from "../components/LogoutConfirmationModal"; // Import the new component
 
 function NavScrollBar({ cards }) {
+  const { user, setUser } = useUserContext();
   const [modalShow, setModalShow] = useState(false);
   const [loginScreenShow, setLoginScreenShow] = useState(false);
   const [signupScreenShow, setSignupScreenShow] = useState(false);
+  const [logoutModalShow, setLogoutModalShow] = useState(false); // State for logout modal
+
+  const handleLogout = () => {
+    setUser(null);
+    setLogoutModalShow(false); // Hide the modal after logging out
+  };
 
   return (
     <>
@@ -53,18 +62,32 @@ function NavScrollBar({ cards }) {
               >
                 Search Card
               </Button>
-              <Button
-                variant="outline-success"
-                onClick={() => setLoginScreenShow(true)}
-              >
-                Login
-              </Button>
-              <Button
-                variant="outline-success"
-                onClick={() => setSignupScreenShow(true)}
-              >
-                Sign Up
-              </Button>
+              {user ? (
+                <>
+                  <label className="user-greeting">Hello, {user.name}</label>
+                  <Button
+                    variant="outline-success"
+                    onClick={() => setLogoutModalShow(true)}
+                  >
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    variant="outline-success"
+                    onClick={() => setLoginScreenShow(true)}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    variant="outline-success"
+                    onClick={() => setSignupScreenShow(true)}
+                  >
+                    Sign Up
+                  </Button>
+                </>
+              )}
             </Form>
           </Navbar.Collapse>
         </Container>
@@ -84,6 +107,12 @@ function NavScrollBar({ cards }) {
         show={modalShow}
         onHide={() => setModalShow(false)}
         cards={cards}
+      />
+
+      <LogoutConfirmationModal
+        show={logoutModalShow}
+        onHide={() => setLogoutModalShow(false)}
+        onLogout={handleLogout}
       />
     </>
   );

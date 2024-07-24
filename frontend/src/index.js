@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CardsOfSet from "./pages/cardOfSetPage/CardsOfSetPage";
 import { CardsProvider } from "./components/context/cardsProvider";
 import CardDetails from "./pages/CardDetails/CardDetails";
+import { UserProvider } from "./components/context/userContext";
 
 const router = createBrowserRouter([
   {
@@ -27,9 +28,11 @@ const router = createBrowserRouter([
 
 ReactDOM.render(
   <React.StrictMode>
-    <CardsProvider>
-      <RouterProvider router={router} />
-    </CardsProvider>
+    <UserProvider>
+      <CardsProvider>
+        <RouterProvider router={router} />
+      </CardsProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

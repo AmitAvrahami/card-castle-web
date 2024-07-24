@@ -1,0 +1,9 @@
+.logout-modal .modal-dialog {
+  max-width: none;
+}
+
+.logout-modal .modal-content {
+  width: auto;
+  height: auto;
+  background-color: white;
+}
