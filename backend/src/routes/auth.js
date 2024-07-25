@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
               jwtSecret,
               { expiresIn: "1d" }
             );
-            res.cookie("token", token);
+            res.cookie("token", token, { httpOnly: true, secure: false });
             return res.json({ status: "Success", user });
           } else {
             return res.status(400).json({ message: "Password is incorrect" });
@@ -58,6 +58,37 @@ router.post("/login", async (req, res) => {
       console.error("Error during login:", err);
       res.status(500).json({ message: "Error during login" });
     });
+});
+
+router.get("/validate", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  jwt.verify(token, jwtSecret, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    UserModel.findOne({ email: decoded.email })
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+        return res.json({ status: "Success", user });
+      })
+      .catch((err) => {
+        console.error("Error finding user:", err);
+        return res.status(500).json({ message: "Error finding user" });
+      });
+  });
+});
+
+// Logout route
+router.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.json({ status: "Success" });
 });
 
 module.exports = router;

@@ -12,6 +12,7 @@ import SearchModal from "../SearchModal/SearchModal";
 import LoginPage from "../pages/loginPage/LoginPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import LogoutConfirmationModal from "../components/LogoutConfirmationModal"; // Import the new component
+import axios from "axios";
 
 function NavScrollBar({ cards }) {
   const { user, setUser } = useUserContext();
@@ -20,7 +21,8 @@ function NavScrollBar({ cards }) {
   const [signupScreenShow, setSignupScreenShow] = useState(false);
   const [logoutModalShow, setLogoutModalShow] = useState(false); // State for logout modal
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await axios.get("http://localhost:5000/auth/logout", { withCredentials: true });
     setUser(null);
     setLogoutModalShow(false); // Hide the modal after logging out
   };
