@@ -9,6 +9,9 @@ import CardsOfSet from "./pages/cardOfSetPage/CardsOfSetPage";
 import { CardsProvider } from "./components/context/cardsProvider";
 import CardDetails from "./pages/CardDetails/CardDetails";
 import { UserProvider } from "./components/context/userContext";
+import TopDecks from "./pages/TopDecks/TopDecks";
+import CardsOfDeck from "./pages/CardsOfDeckPage/CardsOfDeck";
+
 
 const router = createBrowserRouter([
   {
@@ -22,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: "/card/:cardId",
     element: <CardDetails />,
+  },
+  {
+    path: "/top-decks",
+    element: <TopDecks />,
+  },
+  {
+    path: "/deck-details/:deckId",
+    element: <CardsOfDeck />,
   },
   {},
 ]);

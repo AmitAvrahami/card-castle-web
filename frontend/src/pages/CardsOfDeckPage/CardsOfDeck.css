@@ -1,0 +1,36 @@
+/* CardsOfDeck.css */
+.cards-of-deck-container {
+    padding: 20px;
+}
+
+.deck-details {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    /* Small gap between cards */
+}
+
+.card-custom {
+    width: 100%;
+    max-width: 150px;
+    /* Increase card size */
+    /* Set a max-width for the card to make it bigger */
+}
+
+.card-img-custom {
+    width: 100%;
+    height: auto;
+}
+
+/* Responsive grid with 10 cards per row */
+@media (min-width: 1200px) {
+    .cards-grid .col-lg-1 {
+        flex: 0 0 10%;
+        max-width: 10%;
+    }
+}
