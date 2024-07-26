@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUserContext } from "../components/context/userContext";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -22,6 +22,20 @@ function NavScrollBar({ cards }) {
   const [logoutModalShow, setLogoutModalShow] = useState(false); // State for logout modal
 
 
+  useEffect(() => {
+    const validateToken = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/auth/validate", { withCredentials: true });
+        if (response.data.status === "Success") {
+          setUser(response.data.user);
+        }
+      } catch (error) {
+        console.error("Error validating token:", error);
+      }
+    };
+
+    validateToken();
+  }, [setUser]);
 
   const handleLogout = async () => {
     await axios.get("http://localhost:5000/auth/logout", { withCredentials: true });

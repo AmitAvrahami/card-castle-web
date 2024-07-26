@@ -6,6 +6,7 @@ const DeckSchema = new mongoose.Schema({
     image: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
+    youtubeLink: { type: String, required: false },
     cards: [
         {
             cardId: { type: Number, required: true },
