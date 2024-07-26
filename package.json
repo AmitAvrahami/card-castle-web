@@ -8,6 +8,8 @@
     "client": "cd frontend && npm start"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "react-bootstrap": "^2.10.3",

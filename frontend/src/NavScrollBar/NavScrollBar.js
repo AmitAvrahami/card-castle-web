@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useUserContext } from "../components/context/userContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -11,7 +13,7 @@ import "./NavScrollBar.css";
 import SearchModal from "../SearchModal/SearchModal";
 import LoginPage from "../pages/loginPage/LoginPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
-import LogoutConfirmationModal from "../components/LogoutConfirmationModal"; // Import the new component
+import LogoutConfirmationModal from "../components/LogoutConfirmationModal/LogoutConfirmationModal"; // Import the new component
 import axios from "axios";
 
 function NavScrollBar({ cards }) {
@@ -21,10 +23,10 @@ function NavScrollBar({ cards }) {
   const [signupScreenShow, setSignupScreenShow] = useState(false);
   const [logoutModalShow, setLogoutModalShow] = useState(false); // State for logout modal
 
-
-
   const handleLogout = async () => {
-    await axios.get("http://localhost:5000/auth/logout", { withCredentials: true });
+    await axios.get("http://localhost:5000/auth/logout", {
+      withCredentials: true,
+    });
     setUser(null);
     setLogoutModalShow(false); // Hide the modal after logging out
   };
@@ -55,8 +57,8 @@ function NavScrollBar({ cards }) {
                   Something else here
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="#" disabled>
-                Link
+              <Nav.Link href="/shopping-cart">
+                <FontAwesomeIcon icon={faShoppingCart} /> Shopping Cart
               </Nav.Link>
             </Nav>
             <Form className="d-flex">

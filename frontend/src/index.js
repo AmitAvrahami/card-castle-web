@@ -11,7 +11,7 @@ import CardDetails from "./pages/CardDetails/CardDetails";
 import { UserProvider } from "./components/context/userContext";
 import TopDecks from "./pages/TopDecks/TopDecks";
 import CardsOfDeck from "./pages/CardsOfDeckPage/CardsOfDeck";
-
+import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +34,10 @@ const router = createBrowserRouter([
     path: "/deck-details/:deckId",
     element: <CardsOfDeck />,
   },
-  {},
+  {
+    path: "/shopping-cart",
+    element: <ShoppingCart />,
+  },
 ]);
 
 ReactDOM.render(

@@ -1,0 +1,29 @@
+/* CartSummary.css */
+
+.cart-summary-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-summary-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.cart-summary-container p {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.checkout-button {
+  margin-top: 20px;
+  background-color: #ba7c55;
+  border: none;
+}
+
+.checkout-button:hover {
+  background-color: hsl(23, 51%, 62%);
+}
