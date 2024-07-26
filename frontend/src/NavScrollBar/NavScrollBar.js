@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useUserContext } from "../components/context/userContext";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -20,6 +21,7 @@ function NavScrollBar({ cards }) {
   const [loginScreenShow, setLoginScreenShow] = useState(false);
   const [signupScreenShow, setSignupScreenShow] = useState(false);
   const [logoutModalShow, setLogoutModalShow] = useState(false); // State for logout modal
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -41,6 +43,10 @@ function NavScrollBar({ cards }) {
     await axios.get("http://localhost:5000/auth/logout", { withCredentials: true });
     setUser(null);
     setLogoutModalShow(false); // Hide the modal after logging out
+  };
+
+  const handleCardClick = (card) => {
+    navigate(`/card/${card.id}`); // Navigate to the card details page
   };
 
   return (
@@ -124,6 +130,7 @@ function NavScrollBar({ cards }) {
       <SearchModal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        onCardClick={handleCardClick}
         cards={cards}
       />
 

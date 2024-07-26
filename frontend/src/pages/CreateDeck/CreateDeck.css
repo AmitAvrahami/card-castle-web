@@ -1,0 +1,85 @@
+/* Ensure that the modals appear above the content */
+.modal-backdrop {
+    z-index: 1040;
+    /* Bootstrap's default z-index for modals' backdrop */
+}
+
+.modal {
+    z-index: 1050;
+    /* Bootstrap's default z-index for modals */
+}
+
+.create-deck-container {
+    padding-top: 100px;
+
+    /* Adjust this value if needed to position below the NavScrollBar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* Center items horizontally */
+}
+
+.button-container {
+    margin-top: 20px;
+    gap: 10px;
+    /* Adjust this value as needed for spacing */
+}
+
+.picked-cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+    /* Small gap between cards */
+}
+
+.card-image-small {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.card-custom {
+    width: 100%;
+    max-width: 150px;
+    /* Adjust the card size */
+}
+
+.card-img-custom {
+    width: 100%;
+    height: auto;
+}
+
+/* Responsive grid with 10 cards per row */
+@media (min-width: 1200px) {
+    .picked-cards-grid .col-lg-2 {
+        flex: 0 0 10%;
+        max-width: 10%;
+    }
+}
+
+.publish-deck-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.small-modal .modal-dialog {
+    max-width: 300px;
+    max-height: 100px;
+    /* Adjust the width as needed */
+}
+
+.small-modal .modal-content {
+    padding: 10px;
+    /* Adjust the padding as needed */
+}

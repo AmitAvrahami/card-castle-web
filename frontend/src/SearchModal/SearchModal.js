@@ -3,7 +3,8 @@ import { Button, Col, Container, Modal, Row, Form } from 'react-bootstrap';
 import { useCardsContext } from '../components/context/cardsProvider';
 import './SearchModal.css'
 
-function SearchModal(props) {
+
+function SearchModal({ onCardClick, ...props }) {
     const { cards } = useCardsContext();
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredCards, setFilteredCards] = useState([]);
@@ -47,7 +48,16 @@ function SearchModal(props) {
                         )}
                         {cardsToDisplay.map((card, index) => (
                             <Col key={index} className="card-item">
-                                <a href={`/card/${card.id}`} className="card-link">
+                                <a
+                                    href="#!"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        if (onCardClick) {
+                                            onCardClick(card);
+                                        }
+                                    }}
+                                    className="card-link"
+                                >
                                     <img
                                         src={card.card_images?.[0]?.image_url || 'fallback_image_url'}
                                         alt={card.name}

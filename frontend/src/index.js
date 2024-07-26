@@ -11,6 +11,7 @@ import CardDetails from "./pages/CardDetails/CardDetails";
 import { UserProvider } from "./components/context/userContext";
 import TopDecks from "./pages/TopDecks/TopDecks";
 import CardsOfDeck from "./pages/CardsOfDeckPage/CardsOfDeck";
+import CreateDeck from "./pages/CreateDeck/CreateDeck";
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/deck-details/:deckId",
     element: <CardsOfDeck />,
+  },
+  {
+    path: "/create-deck",
+    element: <CreateDeck />,
   },
   {},
 ]);
