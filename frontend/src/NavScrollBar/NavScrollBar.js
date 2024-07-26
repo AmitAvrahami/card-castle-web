@@ -47,6 +47,7 @@ function NavScrollBar({ cards }) {
 
   const handleCardClick = (card) => {
     navigate(`/card/${card.id}`); // Navigate to the card details page
+    setModalShow(false)
   };
 
   return (

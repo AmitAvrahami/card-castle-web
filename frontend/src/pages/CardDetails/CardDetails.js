@@ -16,6 +16,7 @@ function CardDetails() {
             if (foundCard) {
                 setCard(foundCard);
                 setLoading(false);
+                console.log("Card details", foundCard)
             }
         }
     }, [cardId, cards]);
@@ -43,7 +44,7 @@ function CardDetails() {
                         />
                         <div className="price-button">
                             <button className="price-btn">
-                                Buy now: {card.cardmarket_price || "N/A"}$
+                                Buy now: {card.card_prices[0].tcgplayer_price || "N/A"}$
                             </button>
                         </div>
                     </div>
