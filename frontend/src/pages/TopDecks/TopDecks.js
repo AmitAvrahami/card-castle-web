@@ -6,6 +6,7 @@ import NavScrollBar from "../../NavScrollBar/NavScrollBar";
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 import "./TopDecks.css";
 
 function TopDecks() {
@@ -26,6 +27,11 @@ function TopDecks() {
     return (
         <div className="top-decks-container">
             <NavScrollBar />
+            <div className="button-container">
+                <Link to="/create-deck">
+                    <Button variant="primary">Create New Deck</Button>
+                </Link>
+            </div>
             <Row className="cards-grid">
                 {decks.map((deck) => (
                     <Col key={deck._id} xs={12} md={4} className="d-flex justify-content-center">

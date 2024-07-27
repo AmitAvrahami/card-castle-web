@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Link } from "react-router-dom";
-
+import VideoPlayer from "../../components/VideoPlayer";
 import { useCardsContext } from "../../components/context/cardsProvider";
 import "./CardsOfDeck.css";
 
@@ -34,6 +34,16 @@ function CardsOfDeck() {
         }
         return [];
     }) : [];
+
+    // Function to extract YouTube video ID
+    const extractYouTubeVideoId = (url) => {
+        const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|watch(?:\?v=|\S+)|\S+\/\S+\/|live\/\S+)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    };
+
+    // Check if the YouTube link is valid and extract the video ID
+    const videoId = deck && deck.youtubeLink ? extractYouTubeVideoId(deck.youtubeLink) : null;
 
     return (
         <div className="cards-of-deck-container">
@@ -65,7 +75,8 @@ function CardsOfDeck() {
                     </Col>
                 )}
             </Row>
-        </div>
+            {videoId && <VideoPlayer videoId={videoId} />}
+        </div >
     );
 }
 

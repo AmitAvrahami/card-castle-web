@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUserContext } from "../components/context/userContext";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
@@ -22,6 +23,25 @@ function NavScrollBar({ cards }) {
   const [loginScreenShow, setLoginScreenShow] = useState(false);
   const [signupScreenShow, setSignupScreenShow] = useState(false);
   const [logoutModalShow, setLogoutModalShow] = useState(false); // State for logout modal
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const validateToken = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/auth/validate",
+          { withCredentials: true }
+        );
+        if (response.data.status === "Success") {
+          setUser(response.data.user);
+        }
+      } catch (error) {
+        console.error("Error validating token:", error);
+      }
+    };
+
+    validateToken();
+  }, [setUser]);
 
   const handleLogout = async () => {
     await axios.get("http://localhost:5000/auth/logout", {
@@ -29,6 +49,11 @@ function NavScrollBar({ cards }) {
     });
     setUser(null);
     setLogoutModalShow(false); // Hide the modal after logging out
+  };
+
+  const handleCardClick = (card) => {
+    navigate(`/card/${card.id}`); // Navigate to the card details page
+    setModalShow(false);
   };
 
   return (
@@ -112,6 +137,7 @@ function NavScrollBar({ cards }) {
       <SearchModal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        onCardClick={handleCardClick}
         cards={cards}
       />
 

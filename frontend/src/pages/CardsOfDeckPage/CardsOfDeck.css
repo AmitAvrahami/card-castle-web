@@ -34,3 +34,10 @@
         max-width: 10%;
     }
 }
+
+.youtube-player {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
