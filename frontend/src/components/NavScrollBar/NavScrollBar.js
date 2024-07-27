@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useUserContext } from "../components/context/userContext";
+import { useUserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
@@ -9,13 +9,14 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import logo from "../images/card-castle-yu-gi-oh-logo.png";
+import logo from "../../images/card-castle-yu-gi-oh-logo.png";
 import "./NavScrollBar.css";
-import SearchModal from "../SearchModal/SearchModal";
-import LoginPage from "../pages/loginPage/LoginPage";
-import SignUpPage from "../pages/SignUpPage/SignUpPage";
-import LogoutConfirmationModal from "../components/LogoutConfirmationModal/LogoutConfirmationModal"; // Import the new component
+
+import LoginPage from "../../pages/loginPage/LoginPage";
+import SignUpPage from "../../pages/SignUpPage/SignUpPage";
+import LogoutConfirmationModal from "../LogoutConfirmationModal/LogoutConfirmationModal"; // Import the new component
 import axios from "axios";
+import SearchModal from "../SearchModal/SearchModal";
 
 function NavScrollBar({ cards }) {
   const { user, setUser } = useUserContext();
@@ -83,7 +84,8 @@ function NavScrollBar({ cards }) {
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="/shopping-cart">
-                <FontAwesomeIcon icon={faShoppingCart} /> Shopping Cart
+                <FontAwesomeIcon icon={faShoppingCart} />
+                Shopping Cart
               </Nav.Link>
             </Nav>
             <Form className="d-flex">

@@ -1,0 +1,42 @@
+.shipping-modal .modal-dialog {
+  max-width: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.shipping-modal .modal-dialog.show {
+  transform: translateY(0);
+}
+
+.shipping-modal .modal-dialog {
+  transform: translateY(-50px);
+}
+
+.shipping-modal .modal-content {
+  width: auto;
+  height: auto;
+}
+
+.shipping-form-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.shipping-form-container .form-group {
+  margin-bottom: 1rem;
+}
+
+.shipping-form-container .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.shipping-form-container .form-group .form-control {
+  display: block;
+  width: 100%;
+}
+
+.shipping-form-container .form-group input,
+.shipping-form-container .form-group textarea {
+  margin-top: 3rem;
+}

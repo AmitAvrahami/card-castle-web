@@ -7,13 +7,12 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CardsOfSet from "./pages/cardOfSetPage/CardsOfSetPage";
 import { CardsProvider } from "./components/context/cardsProvider";
-import CardDetails from "./pages/CardDetails/CardDetails";
+import CardDetails from "./pages/CardDetailsPage/CardDetails";
 import { UserProvider } from "./components/context/userContext";
-import TopDecks from "./pages/TopDecks/TopDecks";
+import TopDecks from "./pages/TopDecksPage/TopDecks";
 import CardsOfDeck from "./pages/CardsOfDeckPage/CardsOfDeck";
-import CreateDeck from "./pages/CreateDeck/CreateDeck";
-
-import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
+import CreateDeck from "./pages/CreateDeckPage/CreateDeck";
+import ShoppingCart from "./pages/ShoppingCartPage/ShoppingCart";
 
 const router = createBrowserRouter([
   {

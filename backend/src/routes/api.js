@@ -5,7 +5,6 @@ const router = express.Router();
 
 const YGO_API_URL = "https://db.ygoprodeck.com/api/v7";
 
-
 router.get("/cards", async (req, res) => {
   try {
     const response = await axios.get(YGO_API_URL + "/cardinfo.php");
@@ -19,28 +18,40 @@ router.get("/cards", async (req, res) => {
 
 router.get("/sets", async (req, res) => {
   try {
-    const cardResponse = await axios.get(`${YGO_API_URL}/cardinfo.php`);
-    const cards = cardResponse.data.data.slice(0, 1500);
-
+    // Fetch all sets
     const setResponse = await axios.get(`${YGO_API_URL}/cardsets.php`);
     const sets = setResponse.data;
 
-    // Collect unique set names from card_sets
-    const cardSetNames = cards.reduce((setNames, card) => {
+    // Fetch cards to collect set names and prices
+    const cardResponse = await axios.get(`${YGO_API_URL}/cardinfo.php`);
+    const cards = cardResponse.data.data.slice(0, 1500);
+
+    // Create a map to store total prices of sets
+    const setPrices = {};
+
+    // Calculate the total price of each set
+    cards.forEach((card) => {
       if (card.card_sets) {
         card.card_sets.forEach((set) => {
-          if (!setNames.includes(set.set_name)) {
-            setNames.push(set.set_name);
+          if (!setPrices[set.set_name]) {
+            setPrices[set.set_name] = 0;
+          }
+          if (set.set_price) {
+            setPrices[set.set_name] += parseFloat(set.set_price);
           }
         });
       }
-      return setNames;
-    }, []);
+    });
 
-    // Filter sets based on whether they appear in cardSetNames and have an image
-    const validSets = sets.filter(
-      (set) => set.set_image && cardSetNames.includes(set.set_name)
-    );
+    // Add total price to each set
+    const validSets = sets
+      .filter((set) => set.set_image)
+      .map((set) => {
+        return {
+          ...set,
+          total_price: setPrices[set.set_name] || 15,
+        };
+      });
 
     res.json(validSets);
   } catch (error) {
@@ -48,5 +59,4 @@ router.get("/sets", async (req, res) => {
     res.status(500).send("Error fetching sets");
   }
 });
-
 module.exports = router;

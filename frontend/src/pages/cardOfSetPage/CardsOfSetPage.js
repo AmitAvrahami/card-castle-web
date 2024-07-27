@@ -2,8 +2,8 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCardsContext } from "../../components/context/cardsProvider";
 import { useState, useEffect } from "react";
-import NavScrollBar from "../../NavScrollBar/NavScrollBar";
 import "./CardsOfSetPage.css"; // Ensure you import the CSS file
+import NavScrollBar from "../../components/NavScrollBar/NavScrollBar";
 
 function CardsOfSet() {
   const { setID, setName } = useParams();

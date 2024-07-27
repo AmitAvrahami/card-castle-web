@@ -31,8 +31,6 @@
   color: white;
 }
 
-
-
 .set-item-container .card {
   transition: transform 0.3s ease-in-out;
 }
@@ -45,4 +43,19 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
+}
+
+.buy-set-btn {
+  width: 100%;
+  margin-bottom: 3%;
+  justify-content: center;
+  justify-self: center;
+  background-color: #ba7c55;
+  border: none;
+  font-weight: bold;
+}
+
+.buy-set-btn:hover {
+  border: none;
+  background-color: hsl(23, 42%, 83%);
 }

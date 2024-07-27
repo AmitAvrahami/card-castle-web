@@ -1,34 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./CartSummary.css"; // ייבוא קובץ ה-CSS המותאם אישית שלך
+import { useUserContext } from "../context/userContext";
+import ShippingFormModal from "../../components/ShippingFormModal/ShippingFormModal.js";
+import "./CartSummary.css";
 
-const CartSummary = ({ cartItems }) => {
-  // חישוב המחיר הכולל של הסל
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+const CartSummary = () => {
+  const { user, setUser } = useUserContext();
+  const [showModal, setShowModal] = useState(false);
+
+  if (!user || !user.shopping_cart) {
+    return <p>Loading...</p>;
+  }
+
+  const totalPrice = user.shopping_cart.reduce(
+    (total, item) => total + (item.card_price || 0) * (item.quantity || 1),
     0
   );
 
-  // יצירת תאריך להזמנה
   const orderDate = new Date().toLocaleDateString();
+
+  const handleOncClickedChekout = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <Container className="cart-summary-container">
       <Row>
         <Col md={12} className="text-center">
           <h2>Cart Summary</h2>
-          <p>
-            <strong>Total Price:</strong> ${totalPrice.toFixed(2)}
-          </p>
-          <p>
-            <strong>Order Date:</strong> {orderDate}
-          </p>
-          <Button variant="primary" className="checkout-button">
-            Proceed to Checkout
-          </Button>
+          {user.shopping_cart.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <>
+              <p>
+                <strong>Total Price:</strong> ${totalPrice.toFixed(2)}
+              </p>
+              <p>
+                <strong>Order Date:</strong> {orderDate}
+              </p>
+              <Button
+                variant="primary"
+                className="checkout-button"
+                onClick={handleOncClickedChekout}
+              >
+                Proceed to Checkout
+              </Button>
+            </>
+          )}
         </Col>
       </Row>
+
+      {/* Modal Component */}
+      <ShippingFormModal show={showModal} handleClose={handleCloseModal} />
     </Container>
   );
 };

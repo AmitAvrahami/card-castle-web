@@ -28,7 +28,7 @@ function LoginPage(props) {
     });
   };
 
-  console.log(user, newUser);
+  console.log(user);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
