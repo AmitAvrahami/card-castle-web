@@ -10,7 +10,7 @@ import {
   faBasketShopping,
   faMagnifyingGlass,
   faArrowRightFromBracket,
-  faHouse,
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -80,13 +80,6 @@ function NavScrollBar({ cards }) {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/">
-                <FontAwesomeIcon
-                  icon={faHouse}
-                  style={{ maxHeight: "100px" }}
-                />
-                Home
-              </Nav.Link>
               <Nav.Link href="/top-decks">
                 <FontAwesomeIcon
                   icon={faChessBoard}
@@ -94,6 +87,15 @@ function NavScrollBar({ cards }) {
                 />
                 TopDecks
               </Nav.Link>
+
+              <Nav.Link href="/forum">
+                <FontAwesomeIcon
+                  icon={faComments}
+                  style={{ marginRight: "8px" }}
+                />
+                Forum
+              </Nav.Link>
+
               <NavDropdown
                 id="navbarScrollingDropdown"
                 title={
@@ -113,10 +115,6 @@ function NavScrollBar({ cards }) {
                   />
                   My orders
                 </NavDropdown.Item>
-              <Nav.Link href="/top-decks">Top Decks</Nav.Link>
-              <Nav.Link href="/forum">Forum</Nav.Link>
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
                   <FontAwesomeIcon
                     icon={faCircleInfo}
