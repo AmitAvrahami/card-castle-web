@@ -7,12 +7,14 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import NavScrollBar from "../../components/NavScrollBar/NavScrollBar";
 import CreateArticleModal from "../../components/CreateArticleModal/CreateArticleModal";
+import { useUserContext } from "../../components/context/userContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Forum.css";
 
 function Forum() {
     const [articles, setArticles] = useState([]);
     const [createModalShow, setCreateModalShow] = useState(false);
+    const { user } = useUserContext(); // Access the user context
 
     useEffect(() => {
         // Fetch all articles from the backend
@@ -27,11 +29,19 @@ function Forum() {
             });
     }, []);
 
+    const handleCreateArticle = () => {
+        if (!user) {
+            alert("You need to be logged in to create an article.");
+            return;
+        }
+        setCreateModalShow(true);
+    };
+
     return (
         <div className="top-decks-container">
             <NavScrollBar />
             <div className="button">
-                <Button variant="primary" onClick={() => setCreateModalShow(true)}>
+                <Button variant="primary" onClick={handleCreateArticle}>
                     Create Article
                 </Button>
             </div>

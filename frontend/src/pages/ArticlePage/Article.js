@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 import NavScrollBar from "../../components/NavScrollBar/NavScrollBar";
+import AddCommentModal from "../../components/AddCommentModal/AddCommentModal";
+import { useUserContext } from "../../components/context/userContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Article.css";
 
@@ -12,6 +14,8 @@ function Article() {
     const { id } = useParams(); // Get the article ID from the URL
     const [article, setArticle] = useState(null);
     const [comments, setComments] = useState([]);
+    const [modalShow, setModalShow] = useState(false);
+    const { user } = useUserContext(); // Access the user context
 
     useEffect(() => {
         // Fetch the article data including comments
@@ -42,6 +46,14 @@ function Article() {
         setComments(updatedComments);
     };
 
+    const handleAddComment = () => {
+        if (!user) {
+            alert("You need to be logged in to add a comment.");
+            return;
+        }
+        setModalShow(true);
+    };
+
     return (
         <div className="top-decks-container">
             <NavScrollBar />
@@ -50,9 +62,8 @@ function Article() {
                     <h1 className="article-title">{article.title}</h1>
                     <Row xs={1} className="g-3 justify-content-center">
                         {comments.map((comment) => (
-                            <div>
+                            <div key={comment._id}>
                                 <Card
-                                    key={comment._id}
                                     border="primary"
                                     className="comment-card"
                                     style={{
@@ -69,8 +80,19 @@ function Article() {
                             </div>
                         ))}
                     </Row>
+                    <div className="d-flex justify-content-center mt-4">
+                        <Button variant="primary" onClick={handleAddComment}>
+                            Add Comment
+                        </Button>
+                    </div>
                 </div>
             )}
+            <AddCommentModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                articleId={id}
+                setComments={setComments}
+            />
         </div>
     );
 }

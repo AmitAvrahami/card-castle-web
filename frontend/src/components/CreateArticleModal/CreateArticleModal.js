@@ -12,16 +12,13 @@ function CreateArticleModal({ show, onHide, setArticles }) {
     const { user } = useUserContext();
 
     const handleUpload = () => {
-        if (!user) {
-            alert("You need to be logged in to create an article.");
-            return;
-        }
         const newArticle = { userId: user._id, title, description };
         axios.post("http://localhost:5000/articles", newArticle)
             .then((response) => {
                 setArticles((prevArticles) => [response.data, ...prevArticles]);
                 onHide();
                 setConfirmModalShow(false);  // Close the confirm modal
+                window.location.reload();
             })
             .catch((error) => {
                 console.error("Error creating article:", error);

@@ -78,6 +78,26 @@ router.put("/:id", async (req, res) => {
     }
 });
 
+router.post("/:id/comments", async (req, res) => {
+    try {
+        const { userId, comment } = req.body;
+        const article = await Article.findById(req.params.id);
+        if (!article) {
+            return res.status(404).json({ message: "Article not found" });
+        }
+
+        article.comments.push({ userId, comment });
+        await article.save();
+
+        const updatedArticle = await Article.findById(req.params.id); // Fetch the updated article
+        const addedComment = updatedArticle.comments[updatedArticle.comments.length - 1]; // Get the last added comment
+        res.status(201).json(addedComment);
+    } catch (error) {
+        console.error("Error adding comment:", error);
+        res.status(500).json({ message: "Error adding comment" });
+    }
+});
+
 // Delete an article by ID
 router.delete("/:id", async (req, res) => {
     try {
