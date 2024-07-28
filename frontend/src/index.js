@@ -13,6 +13,8 @@ import TopDecks from "./pages/TopDecksPage/TopDecks";
 import CardsOfDeck from "./pages/CardsOfDeckPage/CardsOfDeck";
 import CreateDeck from "./pages/CreateDeckPage/CreateDeck";
 import ShoppingCart from "./pages/ShoppingCartPage/ShoppingCart";
+import Forum from "./pages/ForumPage/Forum";
+import Article from "./pages/ArticlePage/Article";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
   {
     path: "/shopping-cart",
     element: <ShoppingCart />,
+  },
+  {
+    path: "/forum",
+    element: <Forum />,
+  },
+  {
+    path: "/article/:id",
+    element: <Article />,
   },
 ]);
 

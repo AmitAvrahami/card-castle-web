@@ -1,0 +1,9 @@
+.custom-margin {
+    margin: 15px;
+    margin-top: 150px;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+
+    /* Adjust the margin value as needed */
+}

@@ -1,0 +1,20 @@
+.top-decks-container {
+    padding: 20px;
+}
+
+.article-title {
+    margin-top: 100px;
+    /* Adjust the top margin to ensure it's visible below the NavScrollBar */
+    text-align: center;
+}
+
+.comment-card {
+    margin-top: 20px;
+    /* Margin between comments */
+    margin-bottom: 20px;
+}
+
+.card-header {
+    font-weight: bold;
+    /* Make the header bold */
+}
