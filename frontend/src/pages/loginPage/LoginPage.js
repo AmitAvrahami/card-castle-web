@@ -45,7 +45,6 @@ function LoginPage(props) {
           email: "",
           password: "",
         });
-        console.log("user login:" + user.name);
         if (response.data.role === "admin") {
         } else {
         }
@@ -87,15 +86,16 @@ function LoginPage(props) {
               onChange={handleOnChange}
             />
           </Form.Group>
-
-          <Button
-            variant="primary"
-            type="submit"
-            onClick={props.onHide}
-            className="submit_btn"
-          >
-            Submit
-          </Button>
+          <div className="btn-login-container">
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={props.onHide}
+              className="submit_btn"
+            >
+              Login
+            </Button>
+          </div>
         </Form>
         {message && (
           <Alert

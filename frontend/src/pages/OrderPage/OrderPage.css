@@ -1,0 +1,133 @@
+.order-page {
+  padding: 20px;
+  background-color: #f9f2ec;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-page h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #d2691e;
+  font-family: "Arial", sans-serif;
+}
+
+.order-card {
+  width: 80%;
+  margin-bottom: 20px;
+  border: 1px solid #d2691e;
+  border-radius: 10px;
+  display: flex;
+  text-align: start;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.order-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.order-card .card-header {
+  background-color: #d2691e;
+  color: white;
+  font-weight: bold;
+}
+
+.order-card .card-body {
+  background-color: #fff7f0;
+  display: flex;
+  flex-direction: row;
+}
+
+.order-card .list-group {
+  flex: 1;
+}
+
+.order-card .list-group-item {
+  background-color: transparent;
+  border: none;
+}
+
+.order-card .list-group-item strong {
+  color: #a0522d;
+}
+
+@media (max-width: 768px) {
+  .order-card {
+    margin-bottom: 15px;
+  }
+}
+
+.search-form {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.search-form .form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-button {
+  align-self: flex-end;
+}
+
+.order-card {
+  margin-bottom: 20px;
+}
+
+.order-card .card-header {
+  background-color: #ff9800;
+  color: white;
+}
+
+.order-card .card-body {
+  background-color: #fff3e0;
+}
+
+.search-button {
+  background-color: orange;
+  border-color: orange;
+}
+
+.search-button:hover {
+  background-color: #e68a00;
+  border-color: #e68a00;
+}
+
+.search-form .form-select {
+  border-color: orange;
+}
+
+.search-form .form-select.selected {
+  background-color: #fff8e1;
+  border-color: orange;
+}
+
+.img-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.order-card-image {
+  max-width: 150px;
+  margin: 10px;
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

@@ -13,8 +13,13 @@ import TopDecks from "./pages/TopDecksPage/TopDecks";
 import CardsOfDeck from "./pages/CardsOfDeckPage/CardsOfDeck";
 import CreateDeck from "./pages/CreateDeckPage/CreateDeck";
 import ShoppingCart from "./pages/ShoppingCartPage/ShoppingCart";
+import OrderPage from "./pages/OrderPage/OrderPage";
 
 const router = createBrowserRouter([
+  {
+    path: "/orders",
+    element: <OrderPage />,
+  },
   {
     path: "/",
     element: <App />,

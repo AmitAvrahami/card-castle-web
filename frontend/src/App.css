@@ -6,6 +6,7 @@
   flex-direction: column;
   background-color: white;
   margin-top: 10px;
+  position: relative;
 }
 
 .heading-image {
@@ -22,12 +23,12 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
+  margin-top: 20px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   padding: 20px;
   background-color: #faedcd;
@@ -35,4 +36,11 @@
   margin: 20px;
   max-width: 1000px;
   width: 100%;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure it takes the full viewport height */
 }

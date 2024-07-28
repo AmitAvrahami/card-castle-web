@@ -2,7 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingCart,
+  faUser,
+  faChessBoard,
+  faCircleInfo,
+  faBasketShopping,
+  faMagnifyingGlass,
+  faArrowRightFromBracket,
+  faHouse,
+} from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -71,20 +80,52 @@ function NavScrollBar({ cards }) {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="/top-decks">Top Decks</Nav.Link>
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
+              <Nav.Link href="/">
+                <FontAwesomeIcon
+                  icon={faHouse}
+                  style={{ maxHeight: "100px" }}
+                />
+                Home
+              </Nav.Link>
+              <Nav.Link href="/top-decks">
+                <FontAwesomeIcon
+                  icon={faChessBoard}
+                  style={{ marginRight: "8px" }}
+                />
+                TopDecks
+              </Nav.Link>
+              <NavDropdown
+                id="navbarScrollingDropdown"
+                title={
+                  <>
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      style={{ marginRight: "8px" }}
+                    />
+                    Profile
+                  </>
+                }
+              >
+                <NavDropdown.Item href="/orders">
+                  <FontAwesomeIcon
+                    icon={faBasketShopping}
+                    style={{ marginRight: "8px" }}
+                  />
+                  My orders
                 </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Something else here
+                <NavDropdown.Item href="#action4">
+                  <FontAwesomeIcon
+                    icon={faCircleInfo}
+                    style={{ marginRight: "8px" }}
+                  />
+                  Details
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="/shopping-cart">
-                <FontAwesomeIcon icon={faShoppingCart} />
+                <FontAwesomeIcon
+                  icon={faShoppingCart}
+                  style={{ marginRight: "8px" }}
+                />
                 Shopping Cart
               </Nav.Link>
             </Nav>
@@ -93,6 +134,10 @@ function NavScrollBar({ cards }) {
                 variant="outline-success"
                 onClick={() => setModalShow(true)}
               >
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  style={{ marginRight: "8px" }}
+                />
                 Search Card
               </Button>
               {user ? (
@@ -102,6 +147,10 @@ function NavScrollBar({ cards }) {
                     variant="outline-success"
                     onClick={() => setLogoutModalShow(true)}
                   >
+                    <FontAwesomeIcon
+                      icon={faArrowRightFromBracket}
+                      style={{ marginRight: "8px" }}
+                    />
                     Logout
                   </Button>
                 </>
