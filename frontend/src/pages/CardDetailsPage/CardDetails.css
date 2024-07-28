@@ -1,100 +1,100 @@
 /* CardDetails.css */
 
-
 .origin-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 110vh;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 110vh;
+  height: 70%;
 }
 
 .card-details-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: white;
+  max-width: 60%;
+  height: 70%;
+  height: auto;
+  margin: auto;
+  padding: 5%;
+  border-radius: 5px;
+  background-color: white;
 }
 
 .card-details-container h1 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .card-info {
-    display: flex;
-    align-items: flex-start;
+  display: flex;
+  align-items: flex-start;
 }
 
 .card-image {
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
-    transition: transform 0.3s ease;
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
+  transition: transform 0.3s ease;
 }
 
 .card-image:hover {
-    transform: scale(1.5);
+  transform: scale(1.5);
 }
 
 .price-button {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .price-btn {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .price-btn:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .card-stats {
-    flex: 1;
-    margin-left: 20px;
+  flex: 1;
+  margin-left: 20px;
 }
 
 .card-description {
-    border-radius: 5px;
-    background-color: white;
-    padding: 5px;
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px;
 }
 
 .card-description h4 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 
 .grid-container {
-    margin-left: -10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    background-color: white;
-    border-color: white;
+  margin-left: -10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background-color: white;
+  border-color: white;
 }
 
 .info-box {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #90593B;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #90593b;
 }
 
 .info-box p {
-    margin: 0;
-    color: white;
-    white-space: nowrap;
-
+  margin: 0;
+  color: white;
+  white-space: nowrap;
 }
 
 .info-box strong {
-    white-space: nowrap;
-    color: white;
+  white-space: nowrap;
+  color: white;
 }
