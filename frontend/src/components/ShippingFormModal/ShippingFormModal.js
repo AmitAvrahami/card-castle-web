@@ -151,9 +151,11 @@ const ShippingFormModal = ({ show, handleClose }) => {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
+            <div className="checkout-btn-container">
+              <Button variant="primary" type="submit" className="checkout-btn">
+                Checkout
+              </Button>
+            </div>
           </Form>
         </Container>
       </Modal.Body>

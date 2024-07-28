@@ -15,8 +15,13 @@ import CreateDeck from "./pages/CreateDeckPage/CreateDeck";
 import ShoppingCart from "./pages/ShoppingCartPage/ShoppingCart";
 import Forum from "./pages/ForumPage/Forum";
 import Article from "./pages/ArticlePage/Article";
+import OrderPage from "./pages/OrderPage/OrderPage";
 
 const router = createBrowserRouter([
+  {
+    path: "/orders",
+    element: <OrderPage />,
+  },
   {
     path: "/",
     element: <App />,

@@ -6,11 +6,11 @@ import ShippingFormModal from "../../components/ShippingFormModal/ShippingFormMo
 import "./CartSummary.css";
 
 const CartSummary = () => {
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
   const [showModal, setShowModal] = useState(false);
 
   if (!user || !user.shopping_cart) {
-    return <p>Loading...</p>;
+    return null; // לא מציג שום דבר אם המשתמש או עגלת הקניות לא נטענו
   }
 
   const totalPrice = user.shopping_cart.reduce(
@@ -20,7 +20,7 @@ const CartSummary = () => {
 
   const orderDate = new Date().toLocaleDateString();
 
-  const handleOncClickedChekout = () => {
+  const handleOnClickedCheckout = () => {
     setShowModal(true);
   };
 
@@ -46,7 +46,7 @@ const CartSummary = () => {
               <Button
                 variant="primary"
                 className="checkout-button"
-                onClick={handleOncClickedChekout}
+                onClick={handleOnClickedCheckout}
               >
                 Proceed to Checkout
               </Button>

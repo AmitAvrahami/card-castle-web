@@ -17,3 +17,9 @@
 .submit_btn:hover {
   background-color: hsl(23, 42%, 73%);
 }
+
+.btn-login-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}

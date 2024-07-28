@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { Button, Col, Container, Modal, Row, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {
+  Button,
+  Col,
+  Container,
+  Modal,
+  Row,
+  Form,
+  Spinner,
+} from "react-bootstrap";
 import "./SearchModal.css";
 import { useCardsContext } from "../context/cardsProvider";
 
@@ -7,10 +15,18 @@ function SearchModal({ onCardClick, ...props }) {
   const { cards } = useCardsContext();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCards, setFilteredCards] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (cards.length > 0) {
+      setLoading(false);
+    }
+  }, [cards]);
 
   const handleSearch = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
+    setLoading(true);
 
     if (value) {
       const filtered = cards.filter(
@@ -18,8 +34,10 @@ function SearchModal({ onCardClick, ...props }) {
           card.name && card.name.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredCards(filtered);
+      setLoading(false);
     } else {
       setFilteredCards([]);
+      setLoading(false);
     }
   };
 
@@ -42,32 +60,42 @@ function SearchModal({ onCardClick, ...props }) {
               onChange={handleSearch}
             />
           </Form.Group>
-          <Row className="grid-container">
-            {cardsToDisplay.length === 0 && searchTerm && <p>No cards found</p>}
-            {cardsToDisplay.map((card, index) => (
-              <Col key={index} className="card-item">
-                <a
-                  href="#!"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (onCardClick) {
-                      onCardClick(card);
-                    }
-                  }}
-                  className="card-link"
-                >
-                  <img
-                    src={
-                      card.card_images?.[0]?.image_url || "fallback_image_url"
-                    }
-                    alt={card.name}
-                    className="card-image"
-                  />
-                  <p>{card.name}</p>
-                </a>
-              </Col>
-            ))}
-          </Row>
+          {loading ? (
+            <div className="spinner-container">
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </div>
+          ) : (
+            <Row className="grid-container">
+              {cardsToDisplay.length === 0 && searchTerm && (
+                <p>No cards found</p>
+              )}
+              {cardsToDisplay.map((card, index) => (
+                <Col key={index} className="card-item">
+                  <a
+                    href="#!"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onCardClick) {
+                        onCardClick(card);
+                      }
+                    }}
+                    className="card-link"
+                  >
+                    <img
+                      src={
+                        card.card_images?.[0]?.image_url || "fallback_image_url"
+                      }
+                      alt={card.name}
+                      className="card-image"
+                    />
+                    <p>{card.name}</p>
+                  </a>
+                </Col>
+              ))}
+            </Row>
+          )}
         </Container>
       </Modal.Body>
       <Modal.Footer>

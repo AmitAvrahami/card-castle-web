@@ -40,3 +40,19 @@
 .shipping-form-container .form-group textarea {
   margin-top: 3rem;
 }
+
+.checkout-btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.checkout-btn {
+  background-color: orange;
+  border: none;
+  font-weight: bold;
+}
+
+.checkout-btn:hover {
+  background-color: rgba(255, 166, 0, 0.521);
+}

@@ -1,81 +1,81 @@
 /* Root variables for easy customization */
 :root {
-    --grid-columns: 6;
-    /* Number of columns in the grid */
-    --grid-gap: 10px;
-    /* Gap between grid items */
-    --card-width: 100%;
-    /* Width of the card images */
-    --card-height: auto;
-    /* Height of the card images */
-    --modal-width: 80vw;
-    /* Default width of the modal */
-    --modal-height: 90vh;
-    /* Height of the modal */
-    --card-item-min-height: 100px;
-    /* Minimum height of each card item */
+  --grid-columns: 6;
+  /* Number of columns in the grid */
+  --grid-gap: 10px;
+  /* Gap between grid items */
+  --card-width: 100%;
+  /* Width of the card images */
+  --card-height: auto;
+  /* Height of the card images */
+  --modal-width: 80vw;
+  /* Default width of the modal */
+  --modal-height: 90vh;
+  /* Height of the modal */
+  --card-item-min-height: 100px;
+  /* Minimum height of each card item */
 }
 
 /* Override Bootstrap modal width */
 .modal-dialog {
-    max-width: var(--modal-width);
-    /* Set modal width dynamically */
-    width: var(--modal-width);
-    /* Set modal width dynamically */
+  max-width: var(--modal-width);
+  /* Set modal width dynamically */
+  width: var(--modal-width);
+  /* Set modal width dynamically */
 }
 
 .modal-content {
-    height: var(--modal-height);
-    /* Set modal content height */
+  height: var(--modal-height);
+  /* Set modal content height */
 }
 
 /* Modal body styling */
 .modal-body {
-    max-height: calc(var(--modal-height) - 100px);
-    /* Adjust height to account for header and footer */
-    overflow-y: auto;
+  max-height: calc(var(--modal-height) - 100px);
+  /* Adjust height to account for header and footer */
+  overflow-y: auto;
 }
 
 /* Grid container styling */
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    /* Set number of columns dynamically */
-    grid-gap: var(--grid-gap);
-    /* Set gap between items */
-    max-width: 100%;
-    grid-auto-rows: minmax(var(--card-item-min-height), auto);
-    /* Set row height */
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  /* Set number of columns dynamically */
+  grid-gap: var(--grid-gap);
+  /* Set gap between items */
+  max-width: 100%;
+  grid-auto-rows: minmax(var(--card-item-min-height), auto);
+  /* Set row height */
 }
 
 /* Card item styling */
 .card-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Card image styling */
 .card-image {
-    max-width: var(--card-width);
-    /* Set card image width */
-    height: var(--card-height);
-    /* Set card image height */
+  max-width: var(--card-width);
+  /* Set card image width */
+  height: var(--card-height);
+  /* Set card image height */
 }
 
 /* Adjust styling for small screens or custom modal sizes if needed */
 @media (max-width: 768px) {
-    :root {
-        --grid-columns: 3;
-        /* Fewer columns on small screens */
-    }
+  :root {
+    --grid-columns: 3;
+    /* Fewer columns on small screens */
+  }
 }
 
 @media (max-width: 576px) {
-    :root {
-        --modal-width: 90vw;
-        /* Increase modal width for smaller screens */
-        --modal-height: 90vh;
-        /* Increase modal height for smaller screens */
-    }
+  :root {
+    --modal-width: 90vw;
+    /* Increase modal width for smaller screens */
+    --modal-height: 90vh;
+    /* Increase modal height for smaller screens */
+  }
 }

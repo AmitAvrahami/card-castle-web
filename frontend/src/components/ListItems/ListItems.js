@@ -4,6 +4,7 @@ import { updateUser } from "../../services/userService";
 import { useUserContext } from "../context/userContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ListItem.css";
+import LoginPage from "../../pages/loginPage/LoginPage";
 
 const ListItems = () => {
   const { user, setUser } = useUserContext();
@@ -79,7 +80,9 @@ const ListItems = () => {
       {notification && (
         <div className={`notification ${notification.type}`}>
           <p>{notification.message}</p>
-          <Button onClick={() => setNotification(null)}>OK</Button>
+          <Button onClick={() => setNotification(null)} className="ok-btn">
+            OK
+          </Button>
         </div>
       )}
       {user ? (
@@ -124,7 +127,9 @@ const ListItems = () => {
           </Row>
         ))
       ) : (
-        <p>Loading cart items...</p>
+        <div className="user-not-found">
+          User not loaded. Please try again later
+        </div>
       )}
     </Container>
   );

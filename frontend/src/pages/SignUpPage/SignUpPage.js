@@ -81,10 +81,11 @@ function SignUpPage(props) {
               onChange={handleOnChange}
             />
           </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+          <div className="signup-btn-container">
+            <Button variant="primary" type="submit" className="signup-btn">
+              Sign-Up
+            </Button>
+          </div>
         </Form>
         {message && (
           <Alert

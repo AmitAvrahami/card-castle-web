@@ -1,7 +1,21 @@
 /* SignUpPage.css */
 
 .modal-dialog {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-btn {
+  display: inline-flex;
+  align-self: center;
+  justify-content: center;
+  background-color: hsl(23, 42%, 53%);
+  border: none;
+}
+
+.signup-btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }
