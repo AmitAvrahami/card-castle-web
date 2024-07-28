@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import NavScrollBar from "../../components/NavScrollBar/NavScrollBar";
+import CreateArticleModal from "../../components/CreateArticleModal/CreateArticleModal";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Forum.css";
 
 function Forum() {
     const [articles, setArticles] = useState([]);
+    const [createModalShow, setCreateModalShow] = useState(false);
 
     useEffect(() => {
         // Fetch all articles from the backend
@@ -29,23 +30,31 @@ function Forum() {
     return (
         <div className="top-decks-container">
             <NavScrollBar />
+            <div className="button">
+                <Button variant="primary" onClick={() => setCreateModalShow(true)}>
+                    Create Article
+                </Button>
+            </div>
             <Row xs={1} md={2} className="g-3 justify-content-center">
                 {articles.map((article) => (
                     <Col key={article._id} className="custom-margin">
-                        <Card className="h-100">
-                            <Card.Body className="d-flex flex-column">
-                                <Card.Title>{article.title}</Card.Title>
-                                <Card.Text className="flex-grow-1">{article.description}</Card.Text>
-                                <div className="d-flex justify-content-end">
-                                    <Link to={`/article/${article._id}`}>
-                                        <Button variant="primary" className="mt-auto align-self-end">Read More</Button>
-                                    </Link>
-                                </div>
+                        <Card className="fixed-card">
+                            <Card.Body>
+                                <Card.Title className="card-title">{article.title}</Card.Title>
+                                <Card.Text className="card-description">{article.description}</Card.Text>
+                                <Link to={`/article/${article._id}`}>
+                                    <Button variant="primary">Read More</Button>
+                                </Link>
                             </Card.Body>
                         </Card>
                     </Col>
                 ))}
             </Row>
+            <CreateArticleModal
+                show={createModalShow}
+                onHide={() => setCreateModalShow(false)}
+                setArticles={setArticles}
+            />
         </div>
     );
 }

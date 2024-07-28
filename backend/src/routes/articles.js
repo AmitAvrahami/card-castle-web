@@ -39,17 +39,25 @@ router.get("/:id", async (req, res) => {
 });
 
 // Create a new article
-router.post("/", async (req, res) => {
-    const { title, description, comments } = req.body;
+router.post('/', async (req, res) => {
     try {
-        const newArticle = new Article({ title, description, comments });
+        const { userId, title, description } = req.body;
+
+        // Add the initial comment to the comments array
+        const newArticle = new Article({
+            userId,
+            title,
+            description,
+            comments: [{ userId, comment: description }]
+        });
+
         await newArticle.save();
         res.status(201).json(newArticle);
     } catch (error) {
-        console.error("Error creating article:", error);
-        res.status(500).json({ message: "Error creating article" });
+        res.status(500).json({ error: 'Error creating article' });
     }
 });
+
 
 // Update an article by ID
 router.put("/:id", async (req, res) => {
