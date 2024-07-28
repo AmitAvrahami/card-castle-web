@@ -113,25 +113,25 @@ function NavScrollBar({ cards }) {
                   />
                   My orders
                 </NavDropdown.Item>
-              <Nav.Link href="/top-decks">Top Decks</Nav.Link>
-              <Nav.Link href="/forum">Forum</Nav.Link>
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
+                <Nav.Link href="/top-decks">Top Decks</Nav.Link>
+                <Nav.Link href="/forum">Forum</Nav.Link>
+                <NavDropdown title="Link" id="navbarScrollingDropdown">
+                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">
+                    <FontAwesomeIcon
+                      icon={faCircleInfo}
+                      style={{ marginRight: "8px" }}
+                    />
+                    Details
+                  </NavDropdown.Item>
+                </NavDropdown>
+                <Nav.Link href="/shopping-cart">
                   <FontAwesomeIcon
-                    icon={faCircleInfo}
+                    icon={faShoppingCart}
                     style={{ marginRight: "8px" }}
                   />
-                  Details
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="/shopping-cart">
-                <FontAwesomeIcon
-                  icon={faShoppingCart}
-                  style={{ marginRight: "8px" }}
-                />
-                Shopping Cart
-              </Nav.Link>
+                  Shopping Cart
+                </Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Button
