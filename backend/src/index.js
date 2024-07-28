@@ -8,6 +8,7 @@ const apiRoutes = require("./routes/api");
 const authRoutes = require("./routes/auth");
 const decksRoutes = require("./routes/decks");
 const userServiceRouts = require("./routes/userService");
+const articlesRoutes = require("./routes/articles");
 
 const app = express();
 const port = 5000;
@@ -29,6 +30,7 @@ app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
 app.use("/decks", decksRoutes);
 app.use("/user_service", userServiceRouts);
+app.use("/articles", articlesRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
