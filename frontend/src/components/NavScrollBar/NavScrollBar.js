@@ -11,6 +11,7 @@ import {
   faMagnifyingGlass,
   faArrowRightFromBracket,
   faComments,
+  faDatabase
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -122,6 +123,15 @@ function NavScrollBar({ cards }) {
                   />
                   Details
                 </NavDropdown.Item>
+                {user && user.role === "Admin" && (
+                  <NavDropdown.Item href="/database">
+                    <FontAwesomeIcon
+                      icon={faDatabase}
+                      style={{ marginRight: "8px" }}
+                    />
+                    Database
+                  </NavDropdown.Item>
+                )}
               </NavDropdown>
               <Nav.Link href="/shopping-cart">
                 <FontAwesomeIcon

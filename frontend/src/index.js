@@ -16,6 +16,9 @@ import ShoppingCart from "./pages/ShoppingCartPage/ShoppingCart";
 import Forum from "./pages/ForumPage/Forum";
 import Article from "./pages/ArticlePage/Article";
 import OrderPage from "./pages/OrderPage/OrderPage";
+import DatabasePage from "./pages/DatabasePage/DatabasePage";
+import ProtectedRoute from "./ProtectedRoute";
+
 
 const router = createBrowserRouter([
   {
@@ -58,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/article/:id",
     element: <Article />,
+  },
+  {
+    path: "/database",
+    element: <ProtectedRoute element={DatabasePage} />,
   },
 ]);
 
