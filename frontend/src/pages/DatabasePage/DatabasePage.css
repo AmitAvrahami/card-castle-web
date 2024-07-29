@@ -1,0 +1,18 @@
+.accordion-button:not(.collapsed) {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.accordion-button {
+    background-color: #f8f9fa;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.accordions-container {
+    margin: 80px;
+    margin-top: 130px;
+}
