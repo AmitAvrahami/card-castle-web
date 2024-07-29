@@ -64,6 +64,7 @@ function Forum() {
                     Create Article
                 </Button>
             </div>
+
             <Row xs={1} md={2} className="g-3 justify-content-center">
                 {articles.map((article) => (
                     <Col key={article._id} className="custom-margin">

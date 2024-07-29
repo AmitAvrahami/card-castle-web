@@ -79,3 +79,59 @@
     /* Increase modal height for smaller screens */
   }
 }
+
+
+
+/* Flex container for search input and CardTypeForm */
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  /* Adjust gap as needed */
+  align-items: center;
+  margin-bottom: 10px;
+  /* Optional margin for spacing */
+}
+
+/* Ensure the CardTypeForm fits well in the flex container */
+.search-container .card-type-form {
+  flex: 1;
+  /* Adjust this as needed */
+  min-width: 200px;
+  /* Ensure CardTypeForm doesn't get too small */
+}
+
+/* Ensure that form controls take up space appropriately */
+.form-group {
+  flex: 1;
+  min-width: 200px;
+  /* Ensure search input doesn't get too small */
+}
+
+
+
+/* Flex container for search input, CardTypeForm, and SortForm */
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  /* Adjust gap as needed */
+  align-items: center;
+  margin-bottom: 10px;
+  /* Optional margin for spacing */
+}
+
+/* Ensure the SortForm fits well in the flex container */
+.search-container .sort-form {
+  flex: 1;
+  /* Adjust this as needed */
+  min-width: 200px;
+  /* Ensure SortForm doesn't get too small */
+}
+
+/* Ensure that form controls take up space appropriately */
+.form-group {
+  flex: 1;
+  min-width: 200px;
+  /* Ensure search input doesn't get too small */
+}
