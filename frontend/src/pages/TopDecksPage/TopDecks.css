@@ -14,6 +14,7 @@
 }
 
 .card-custom {
+
     width: 100%;
     max-width: 500px;
     /* Adjust the card width as needed */
@@ -27,7 +28,7 @@
 }
 
 .card-img-custom {
-    height: 200px;
+    height: auto;
     /* Adjust the card image height as needed */
     object-fit: cover;
     /* Ensure the image fits within the card */

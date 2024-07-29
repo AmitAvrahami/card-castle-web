@@ -64,7 +64,7 @@ function TopDecks() {
           </Col>
         ))}
       </Row>
-    </div>
+    </div >
   );
 }
 
