@@ -11,7 +11,7 @@ import {
   faMagnifyingGlass,
   faArrowRightFromBracket,
   faComments,
-  faDatabase
+  faDatabase,
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -24,7 +24,7 @@ import "./NavScrollBar.css";
 
 import LoginPage from "../../pages/loginPage/LoginPage";
 import SignUpPage from "../../pages/SignUpPage/SignUpPage";
-import LogoutConfirmationModal from "../LogoutConfirmationModal/LogoutConfirmationModal"; // Import the new component
+import LogoutConfirmationModal from "../LogoutConfirmationModal/LogoutConfirmationModal";
 import axios from "axios";
 import SearchModal from "../SearchModal/SearchModal";
 
@@ -33,7 +33,8 @@ function NavScrollBar({ cards }) {
   const [modalShow, setModalShow] = useState(false);
   const [loginScreenShow, setLoginScreenShow] = useState(false);
   const [signupScreenShow, setSignupScreenShow] = useState(false);
-  const [logoutModalShow, setLogoutModalShow] = useState(false); // State for logout modal
+  const [logoutModalShow, setLogoutModalShow] = useState(false);
+  const [navbarHeight, setNavbarHeight] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,16 +55,32 @@ function NavScrollBar({ cards }) {
     validateToken();
   }, [setUser]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const navbar = document.querySelector(".navbar-custom");
+      if (navbar) {
+        setNavbarHeight(navbar.offsetHeight);
+      }
+    };
+
+    // Initialize on component mount
+    handleResize();
+
+    // Update on window resize
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleLogout = async () => {
     await axios.get("http://localhost:5000/auth/logout", {
       withCredentials: true,
     });
     setUser(null);
-    setLogoutModalShow(false); // Hide the modal after logging out
+    setLogoutModalShow(false);
   };
 
   const handleCardClick = (card) => {
-    navigate(`/card/${card.id}`); // Navigate to the card details page
+    navigate(`/card/${card.id}`);
     setModalShow(false);
   };
 
@@ -186,6 +203,13 @@ function NavScrollBar({ cards }) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <div
+        className="nav-scroll-container"
+        style={{ paddingTop: `${navbarHeight}px` }}
+      >
+        {/* The rest of your page content */}
+      </div>
 
       <LoginPage
         show={loginScreenShow}

@@ -219,20 +219,13 @@ function CreateDeck() {
         </Modal.Footer>
       </Modal>
 
-      <div className="createdeck-picked-cards-grid">
+      <div className="card-list">
         {pickedCards.length > 0 ? (
           pickedCards.map((card) =>
             Array(card.quantity)
               .fill(null)
               .map((_, idx) => (
-                <Col
-                  key={`${card.cardId}-${idx}`}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={2}
-                  className="d-flex justify-content-center mb-4"
-                >
+                <div key={`${card.cardId}-${idx}`} className="card-item">
                   <Card
                     className="createdeck-card-custom"
                     onClick={() => handleDeleteCard(card)}
@@ -245,13 +238,11 @@ function CreateDeck() {
                       className="createdeck-card-img-custom"
                     />
                   </Card>
-                </Col>
+                </div>
               ))
           )
         ) : (
-          <Col xs={12} className="d-flex justify-content-center">
-            <p>No cards added yet</p>
-          </Col>
+          <p>No cards added yet</p>
         )}
       </div>
     </div>
