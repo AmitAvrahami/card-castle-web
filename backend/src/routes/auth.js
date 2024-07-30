@@ -8,13 +8,7 @@ const UserModel = require("../../models/User");
 
 const router = express.Router();
 
-const URI_MDB = process.env.MONGODB_URI;
 const jwtSecret = process.env.JWT_SECRET;
-
-mongoose
-  .connect(URI_MDB, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
 
 // Signup route
 router.post("/signup", async (req, res) => {
