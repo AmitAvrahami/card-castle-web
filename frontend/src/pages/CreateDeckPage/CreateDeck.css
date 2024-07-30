@@ -9,58 +9,71 @@
     /* Bootstrap's default z-index for modals */
 }
 
-.create-deck-container {
+.createdeck-container {
     padding-top: 100px;
-
-    /* Adjust this value if needed to position below the NavScrollBar */
+    /* Adjust this value if needed */
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* Center items horizontally */
 }
 
-.button-container {
+.createdeck-button-container {
+    display: flex;
+    gap: 20px;
+    /* Spacing between buttons */
     margin-top: 20px;
-    gap: 10px;
-    /* Adjust this value as needed for spacing */
+    margin-bottom: 20px;
 }
 
-.picked-cards-grid {
+.createdeck-picked-cards-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 2px;
+    gap: 10px;
+    /* Space between cards */
     justify-content: center;
-    /* Small gap between cards */
+    /* Center cards horizontally */
 }
 
-.card-image-small {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-.card-custom {
+.createdeck-card-custom {
     width: 100%;
     max-width: 150px;
-    /* Adjust the card size */
+    /* Fixed max-width for cards */
+    height: auto;
+    /* Maintain aspect ratio */
+    cursor: pointer;
 }
 
-.card-img-custom {
+.createdeck-card-img-custom {
     width: 100%;
     height: auto;
 }
 
-/* Responsive grid with 10 cards per row */
+/* Responsive grid with 10 cards per row for large screens */
 @media (min-width: 1200px) {
-    .picked-cards-grid .col-lg-2 {
+    .createdeck-picked-cards-grid .col-lg-2 {
         flex: 0 0 10%;
         max-width: 10%;
     }
 }
 
-.publish-deck-form {
+/* Responsive grid with 3 cards per row for medium screens */
+@media (max-width: 991px) {
+    .createdeck-picked-cards-grid .col-md-4 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+    }
+}
+
+/* Responsive grid with 2 cards per row for small screens */
+@media (max-width: 767px) {
+    .createdeck-picked-cards-grid .col-sm-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+.createdeck-publish-deck-form {
     display: flex;
     flex-direction: column;
 }
@@ -73,13 +86,11 @@
     width: 100%;
 }
 
-.small-modal .modal-dialog {
+.createdeck-small-modal .modal-dialog {
     max-width: 300px;
     max-height: 100px;
-    /* Adjust the width as needed */
 }
 
-.small-modal .modal-content {
+.createdeck-small-modal .modal-content {
     padding: 10px;
-    /* Adjust the padding as needed */
 }

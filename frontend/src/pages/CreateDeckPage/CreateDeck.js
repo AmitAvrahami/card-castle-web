@@ -6,6 +6,7 @@ import SearchModal from "../../components/SearchModal/SearchModal";
 import CardQuantityModal from "../../components/CardQuantityModal/CardQuantityModal";
 import logo from "../../images/card-castle-yu-gi-oh-logo.png";
 import NavScrollBar from "../../components/NavScrollBar/NavScrollBar";
+import { createDeck } from "../../services/deckService";
 
 function CreateDeck() {
   const [findCardShow, setFindCardShow] = useState(false);
@@ -69,7 +70,7 @@ function CreateDeck() {
 
   const handlePublishDeck = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/decks", {
+      const response = await createDeck({
         id: Math.floor(Math.random() * 10000), // Generate random ID
         image: deckImage || logo,
         title: deckTitle,
@@ -78,7 +79,7 @@ function CreateDeck() {
         cards: pickedCards,
       });
 
-      console.log("Deck published successfully:", response.data);
+      console.log("Deck published successfully:", response);
       alert("Deck published successfully!");
       setPublishDeckShow(false);
       // Clear state or redirect as needed
@@ -117,10 +118,10 @@ function CreateDeck() {
   };
 
   return (
-    <div className="create-deck-container">
+    <div className="createdeck-container">
       <NavScrollBar />
 
-      <div className="button-container">
+      <div className="createdeck-button-container">
         <Button variant="primary" onClick={handleFindCardShow}>
           Find Card
         </Button>
@@ -155,7 +156,7 @@ function CreateDeck() {
           <Modal.Title>Publish Deck</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="publish-deck-form">
+          <div className="createdeck-publish-deck-form">
             <label htmlFor="deckTitle">Deck Title:</label>
             <input
               id="deckTitle"
@@ -200,7 +201,7 @@ function CreateDeck() {
         show={deleteCardShow}
         onHide={handleCloseDeleteCardShow}
         centered
-        className="small-modal"
+        className="createdeck-small-modal"
       >
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
@@ -218,7 +219,7 @@ function CreateDeck() {
         </Modal.Footer>
       </Modal>
 
-      <div className="picked-cards-grid">
+      <div className="createdeck-picked-cards-grid">
         {pickedCards.length > 0 ? (
           pickedCards.map((card) =>
             Array(card.quantity)
@@ -233,7 +234,7 @@ function CreateDeck() {
                   className="d-flex justify-content-center mb-4"
                 >
                   <Card
-                    className="card-custom"
+                    className="createdeck-card-custom"
                     onClick={() => handleDeleteCard(card)}
                   >
                     <Card.Img
@@ -241,7 +242,7 @@ function CreateDeck() {
                       src={
                         card.imageUrl || "https://via.placeholder.com/150x200"
                       }
-                      className="card-img-custom"
+                      className="createdeck-card-img-custom"
                     />
                   </Card>
                 </Col>

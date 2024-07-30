@@ -2,6 +2,17 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000/decks";
 
+
+export const createDeck = async (deckData) => {
+    try {
+        const response = await axios.post(API_URL, deckData);
+        return response.data;
+    } catch (error) {
+        console.error("Error creating deck:", error);
+        throw error;
+    }
+};
+
 export const getDecks = async () => {
     try {
         const response = await axios.get(API_URL);
@@ -31,3 +42,5 @@ export const deleteDeck = async (deckId) => {
         throw error;
     }
 };
+
+

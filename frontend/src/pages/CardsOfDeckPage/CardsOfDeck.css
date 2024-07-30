@@ -1,41 +1,45 @@
-/* CardsOfDeck.css */
-.cards-of-deck-container {
+.cards-of-deck-page {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.deck-details {
+.cards-of-deck-info {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.cards-grid {
+.cards-of-deck-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 2px;
-    /* Small gap between cards */
+    justify-content: center;
+    /* Center the grid */
 }
 
-.card-custom {
+.cards-of-deck-card {
     width: 100%;
     max-width: 150px;
-    /* Increase card size */
-    /* Set a max-width for the card to make it bigger */
+    /* Ensure the card maintains its size */
 }
 
-.card-img-custom {
+.cards-of-deck-card-image {
     width: 100%;
     height: auto;
+    object-fit: contain;
+    /* Ensure the image is contained within its box */
 }
 
 /* Responsive grid with 10 cards per row */
 @media (min-width: 1200px) {
-    .cards-grid .col-lg-1 {
+    .cards-of-deck-grid .col-lg-1 {
         flex: 0 0 10%;
         max-width: 10%;
     }
 }
 
-.youtube-player {
+.cards-of-deck-video-player {
     margin-top: 20px;
     display: flex;
     justify-content: center;
