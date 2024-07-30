@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Modal, Button, Row, Col, Card } from "react-bootstrap";
-import axios from "axios"; // Import Axios
-import "./CreateDeck.css";
+import { Modal, Button, Col, Card } from "react-bootstrap";
+import { useUserContext } from "../../components/context/userContext"; // Import your user context
 import SearchModal from "../../components/SearchModal/SearchModal";
 import CardQuantityModal from "../../components/CardQuantityModal/CardQuantityModal";
 import logo from "../../images/card-castle-yu-gi-oh-logo.png";
 import NavScrollBar from "../../components/NavScrollBar/NavScrollBar";
 import { createDeck } from "../../services/deckService";
+import "./CreateDeck.css";
 
 function CreateDeck() {
   const [findCardShow, setFindCardShow] = useState(false);
@@ -20,6 +20,7 @@ function CreateDeck() {
   const [deckDescription, setDeckDescription] = useState("");
   const [deckImage, setDeckImage] = useState(""); // Default image URL can be set here
   const [youtubeLink, setYoutubeLink] = useState("");
+  const { user } = useUserContext(); // Access the user context
 
   const handleFindCardShow = () => setFindCardShow(true);
   const handleCloseFindCardShow = () => setFindCardShow(false);
@@ -59,6 +60,10 @@ function CreateDeck() {
   };
 
   const handlePublishDeckShow = () => {
+    if (!user) {
+      alert("You need to be logged in to publish a deck.");
+      return;
+    }
     if (pickedCards.length > 0) {
       setPublishDeckShow(true);
     } else {
@@ -69,9 +74,14 @@ function CreateDeck() {
   const handleClosePublishDeckShow = () => setPublishDeckShow(false);
 
   const handlePublishDeck = async () => {
+    if (!user) {
+      alert("You need to be logged in to publish a deck.");
+      return;
+    }
+
     try {
       const response = await createDeck({
-        id: Math.floor(Math.random() * 10000), // Generate random ID
+        userId: user._id, // Use user ID from context
         image: deckImage || logo,
         title: deckTitle,
         description: deckDescription,
@@ -242,15 +252,15 @@ function CreateDeck() {
                       src={
                         card.imageUrl || "https://via.placeholder.com/150x200"
                       }
-                      className="createdeck-card-img-custom"
+                      alt={`Card image ${card.cardId}`}
                     />
                   </Card>
                 </Col>
               ))
           )
         ) : (
-          <Col xs={12} className="d-flex justify-content-center">
-            <p>No cards added yet</p>
+          <Col>
+            <p>No cards selected.</p>
           </Col>
         )}
       </div>

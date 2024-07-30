@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const DeckSchema = new mongoose.Schema({
-    id: { type: Number, required: true, unique: true },
+    userId: { type: String, required: true },
     image: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
