@@ -105,4 +105,23 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+// Delete a comment by index from an article
+router.delete("/:id/comments/:commentId", async (req, res) => {
+    try {
+        const article = await Article.findById(req.params.id);
+        if (!article) {
+            return res.status(404).json({ message: "Article not found" });
+        }
+
+        // Filter out the comment to be deleted
+        article.comments = article.comments.filter(comment => comment._id.toString() !== req.params.commentId);
+
+        await article.save();
+        res.json({ message: "Comment deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting comment:", error);
+        res.status(500).json({ message: "Error deleting comment" });
+    }
+});
+
 module.exports = router;

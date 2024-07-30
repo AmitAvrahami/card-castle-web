@@ -31,3 +31,13 @@ export const deleteArticle = async (articleId) => {
         throw error;
     }
 };
+
+export const deleteComment = async (articleId, commentId) => {
+    try {
+        const response = await axios.delete(`${API_URL}/${articleId}/comments/${commentId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting comment:", error);
+        throw error;
+    }
+};

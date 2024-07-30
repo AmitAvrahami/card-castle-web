@@ -4,9 +4,11 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import CloseButton from 'react-bootstrap/CloseButton';
 import NavScrollBar from "../../components/NavScrollBar/NavScrollBar";
 import AddCommentModal from "../../components/AddCommentModal/AddCommentModal";
 import { useUserContext } from "../../components/context/userContext";
+import { getArticle, deleteComment } from "../../services/articleService";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Article.css";
 
@@ -19,15 +21,17 @@ function Article() {
 
     useEffect(() => {
         // Fetch the article data including comments
-        axios
-            .get(`http://localhost:5000/articles/${id}`)
-            .then((response) => {
-                setArticle(response.data);
-                fetchUserNames(response.data.comments);
-            })
-            .catch((error) => {
+        const fetchArticle = async () => {
+            try {
+                const articleData = await getArticle(id);
+                setArticle(articleData);
+                fetchUserNames(articleData.comments);
+            } catch (error) {
                 console.error("Error fetching article:", error);
-            });
+            }
+        };
+
+        fetchArticle();
     }, [id]);
 
     // Fetch user names for each comment
@@ -54,6 +58,17 @@ function Article() {
         setModalShow(true);
     };
 
+    const handleDeleteComment = async (commentId) => {
+        try {
+            await deleteComment(id, commentId);
+            setComments((prevComments) =>
+                prevComments.filter((comment) => comment._id !== commentId)
+            );
+        } catch (error) {
+            console.error("Error deleting comment:", error);
+        }
+    };
+
     return (
         <div className="top-decks-container">
             <NavScrollBar />
@@ -61,7 +76,7 @@ function Article() {
                 <div>
                     <h1 className="article-title">{article.title}</h1>
                     <Row xs={1} className="g-3 justify-content-center">
-                        {comments.map((comment) => (
+                        {comments.map((comment, index) => (
                             <div key={comment._id}>
                                 <Card
                                     border="primary"
@@ -69,10 +84,18 @@ function Article() {
                                     style={{
                                         width: '80%',
                                         margin: '0 auto',
-                                        backgroundColor: comment.index === 0 ? '#d9edf7' : 'white' // Different color for the first comment
+                                        backgroundColor: index === 0 ? '#d9edf7' : 'white' // Different color for the first comment
                                     }}
                                 >
-                                    <Card.Header className="card-header">{comment.userName}</Card.Header>
+                                    <Card.Header className="card-header">
+                                        {comment.userName}
+                                        {index !== 0 && user && user._id === comment.userId && (
+                                            <CloseButton
+                                                className="float-end"
+                                                onClick={() => handleDeleteComment(comment._id)}
+                                            />
+                                        )}
+                                    </Card.Header>
                                     <Card.Body>
                                         <Card.Text>{comment.comment}</Card.Text>
                                     </Card.Body>

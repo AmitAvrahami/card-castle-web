@@ -18,3 +18,9 @@
     font-weight: bold;
     /* Make the header bold */
 }
+
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}

@@ -54,4 +54,6 @@
   right: 10px;
   z-index: 10;
   /* Ensure the button is above other elements */
+  color: #000;
+  /* Optional: change color if needed */
 }
