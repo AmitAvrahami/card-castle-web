@@ -6,13 +6,6 @@ const User = require("../../models/User");
 
 const router = express.Router();
 
-const URI_MDB = process.env.MONGODB_URI;
-
-mongoose
-  .connect(URI_MDB, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
-
 // Fetch all users
 router.get("/get_all", async (req, res) => {
   try {

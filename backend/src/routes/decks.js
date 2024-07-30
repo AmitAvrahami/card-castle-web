@@ -6,13 +6,6 @@ const Deck = require("../../models/Deck");
 
 const router = express.Router();
 
-const URI_MDB = process.env.MONGODB_URI;
-
-mongoose
-  .connect(URI_MDB, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
-
 // Fetch all decks
 router.get("/", async (req, res) => {
   try {
@@ -40,9 +33,9 @@ router.get("/:id", async (req, res) => {
 
 // Create a new deck
 router.post("/", async (req, res) => {
-  const { id, image, title, description, cards } = req.body;
+  const { id, image, title, description, youtubeLink, cards } = req.body;
   try {
-    const newDeck = new Deck({ id, image, title, description, cards });
+    const newDeck = new Deck({ id, image, title, description, youtubeLink, cards });
     await newDeck.save();
     res.status(201).json(newDeck);
   } catch (error) {
@@ -53,11 +46,11 @@ router.post("/", async (req, res) => {
 
 // Update a deck by ID
 router.put("/:id", async (req, res) => {
-  const { image, title, description, cards } = req.body;
+  const { image, title, description, youtubeLink, cards } = req.body;
   try {
     const updatedDeck = await Deck.findByIdAndUpdate(
       req.params.id,
-      { image, title, description, cards },
+      { image, title, description, youtubeLink, cards },
       { new: true }
     );
     if (!updatedDeck) {

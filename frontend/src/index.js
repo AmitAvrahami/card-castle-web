@@ -17,6 +17,8 @@ import Forum from "./pages/ForumPage/Forum";
 import Article from "./pages/ArticlePage/Article";
 import OrderPage from "./pages/OrderPage/OrderPage";
 import UserInfoPage from "./pages/UserInfoPage/UserInfoPage";
+import DatabasePage from "./pages/DatabasePage/DatabasePage";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +65,10 @@ const router = createBrowserRouter([
   {
     path: "/user-details",
     element: <UserInfoPage />,
+  },
+  {
+    path: "/database",
+    element: <ProtectedRoute element={DatabasePage} />,
   },
 ]);
 

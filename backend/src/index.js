@@ -2,7 +2,8 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-// const connectDB = require("./db");
+const connectDB = require("./db");
+
 
 const apiRoutes = require("./routes/api");
 const authRoutes = require("./routes/auth");
@@ -13,7 +14,7 @@ const articlesRoutes = require("./routes/articles");
 const app = express();
 const port = 5000;
 
-// connectDB();
+connectDB();
 
 app.use(
   cors({

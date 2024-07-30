@@ -42,6 +42,16 @@ export const getUser = async (userId) => {
   }
 };
 
+export const getUsers = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/get_all`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
+};
+
 export const verifyPassword = async (oldPassword, user, newPassword) => {
   try {
     const response = await axios.post(`${API_URL}/verify-password`, {

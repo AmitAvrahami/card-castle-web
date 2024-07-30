@@ -37,6 +37,25 @@ function Forum() {
         setCreateModalShow(true);
     };
 
+    const handleDeleteArticle = (articleId) => {
+        if (!user) {
+            alert("You need to be logged in to delete an article.");
+            return;
+        }
+
+        axios
+            .delete(`http://localhost:5000/articles/${articleId}`)
+            .then(() => {
+                setArticles((prevArticles) =>
+                    prevArticles.filter((article) => article._id !== articleId)
+                );
+                console.log("Article deleted successfully");
+            })
+            .catch((error) => {
+                console.error("Error deleting article:", error);
+            });
+    };
+
     return (
         <div className="top-decks-container">
             <NavScrollBar />
@@ -45,15 +64,27 @@ function Forum() {
                     Create Article
                 </Button>
             </div>
+
             <Row xs={1} md={2} className="g-3 justify-content-center">
                 {articles.map((article) => (
                     <Col key={article._id} className="custom-margin">
                         <Card className="fixed-card">
+                            {user && user._id === article.userId && (
+                                <Button
+                                    variant="danger"
+                                    className="close-button"
+                                    onClick={() => handleDeleteArticle(article._id)}
+                                >
+                                    &times;
+                                </Button>
+                            )}
                             <Card.Body>
                                 <Card.Title className="card-title">{article.title}</Card.Title>
                                 <Card.Text className="card-description">{article.description}</Card.Text>
                                 <Link to={`/article/${article._id}`}>
-                                    <Button variant="primary">Read More</Button>
+                                    <Button variant="primary" className="read-more-button">
+                                        Read More
+                                    </Button>
                                 </Link>
                             </Card.Body>
                         </Card>
