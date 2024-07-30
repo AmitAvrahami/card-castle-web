@@ -33,9 +33,9 @@ router.get("/:id", async (req, res) => {
 
 // Create a new deck
 router.post("/", async (req, res) => {
-  const { id, image, title, description, youtubeLink, cards } = req.body;
+  const { userId, image, title, description, youtubeLink, cards } = req.body;
   try {
-    const newDeck = new Deck({ id, image, title, description, youtubeLink, cards });
+    const newDeck = new Deck({ userId, image, title, description, youtubeLink, cards });
     await newDeck.save();
     res.status(201).json(newDeck);
   } catch (error) {
@@ -46,11 +46,11 @@ router.post("/", async (req, res) => {
 
 // Update a deck by ID
 router.put("/:id", async (req, res) => {
-  const { image, title, description, youtubeLink, cards } = req.body;
+  const { userId, image, title, description, youtubeLink, cards } = req.body;
   try {
     const updatedDeck = await Deck.findByIdAndUpdate(
       req.params.id,
-      { image, title, description, youtubeLink, cards },
+      { userId, image, title, description, youtubeLink, cards },
       { new: true }
     );
     if (!updatedDeck) {
