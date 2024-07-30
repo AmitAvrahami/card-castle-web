@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const User = require("../../models/User");
 
 const router = express.Router();
@@ -68,6 +69,27 @@ router.delete("/delete/:id", async (req, res) => {
   } catch (error) {
     console.error("Error deleting user:", error);
     res.status(500).json({ message: "Error deleting user" });
+  }
+});
+
+router.post("/verify-password", async (req, res) => {
+  const { oldPassword, user, newPassword } = req.body;
+  try {
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (isMatch) {
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      await User.findByIdAndUpdate(
+        user._id,
+        { password: hashedPassword },
+        { new: true }
+      );
+      res.status(200).send(true);
+    } else {
+      res.status(400).send(false);
+    }
+  } catch (error) {
+    console.error("Server error:", error);
+    res.status(500).send("Server error");
   }
 });
 

@@ -1,0 +1,45 @@
+.user-info {
+  background-color: #f4a261;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  width: 80%;
+  font-family: Arial, sans-serif;
+}
+
+.info-item {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item span {
+  font-size: 18px;
+}
+
+.info-item input {
+  font-size: 18px;
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #d65a38; /* חום דומה לכתום */
+  border-radius: 5px;
+}
+
+button {
+  background-color: #e76f51; /* חום דומה לכתום */
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #d65a38;
+}

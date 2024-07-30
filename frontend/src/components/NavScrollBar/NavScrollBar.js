@@ -115,7 +115,7 @@ function NavScrollBar({ cards }) {
                   />
                   My orders
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
+                <NavDropdown.Item href="/user-details">
                   <FontAwesomeIcon
                     icon={faCircleInfo}
                     style={{ marginRight: "8px" }}

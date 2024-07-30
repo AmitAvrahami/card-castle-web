@@ -4,7 +4,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: brown;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -15,6 +15,7 @@
 
 .notification.success {
   border: 2px solid #4caf50;
+  background-color: #4caf50;
 }
 
 .notification.error {
@@ -27,9 +28,9 @@
 }
 
 .notification-content button {
-  background-color: #007bff;
+  background-color: white;
   border: none;
-  color: white;
+  color: brown;
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
@@ -37,5 +38,5 @@
 }
 
 .notification-content button:hover {
-  background-color: #0056b3;
+  background-color: lightyellow;
 }
