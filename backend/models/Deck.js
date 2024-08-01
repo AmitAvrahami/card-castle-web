@@ -7,6 +7,7 @@ const DeckSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     youtubeLink: { type: String, required: false },
+    totalPrice: { type: String, required: true },
     cards: [
         {
             cardId: { type: Number, required: true },

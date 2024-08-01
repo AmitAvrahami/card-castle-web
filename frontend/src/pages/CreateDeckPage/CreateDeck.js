@@ -20,6 +20,7 @@ function CreateDeck() {
   const [deckDescription, setDeckDescription] = useState("");
   const [deckImage, setDeckImage] = useState(""); // Default image URL can be set here
   const [youtubeLink, setYoutubeLink] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
   const { user } = useUserContext(); // Access the user context
 
   const handleFindCardShow = () => setFindCardShow(true);
@@ -36,7 +37,7 @@ function CreateDeck() {
     handleCardQuantityShow(card);
   };
 
-  const handleSaveCard = ({ cardId, quantity, imageUrl }) => {
+  const handleSaveCard = ({ cardId, quantity, imageUrl, price }) => {
     setPickedCards((prev) => {
       const existingCard = prev.find((item) => item.cardId === cardId);
       const totalQuantity = existingCard
@@ -48,29 +49,63 @@ function CreateDeck() {
         return prev;
       }
 
-      if (existingCard) {
-        return prev.map((item) =>
-          item.cardId === cardId ? { ...item, quantity: totalQuantity } : item
-        );
-      } else {
-        return [...prev, { cardId, quantity: totalQuantity, imageUrl }];
-      }
+      const newPickedCards = existingCard
+        ? prev.map((item) =>
+          item.cardId === cardId
+            ? { ...item, quantity: totalQuantity }
+            : item
+        )
+        : [...prev, { cardId, quantity: totalQuantity, imageUrl }];
+
+      // Update total price
+      const newTotalPrice = newPickedCards.reduce((sum, item) => {
+        const itemPrice = item.cardId === cardId ? price : item.price; // Use the price of the new card
+        return sum + itemPrice * totalQuantity;
+      }, 0);
+
+      setTotalPrice(newTotalPrice);
+
+      return newPickedCards;
     });
     setCardQuantityShow(false);
   };
 
-  const handlePublishDeckShow = () => {
-    if (!user) {
-      alert("You need to be logged in to publish a deck.");
-      return;
-    }
-    if (pickedCards.length > 0) {
-      setPublishDeckShow(true);
-    } else {
-      alert("Please add at least one card to the deck before publishing.");
-    }
+  const handleDeleteCard = (card) => {
+    setCardToDelete(card);
+    setDeleteCardShow(true);
   };
 
+  const handleCloseDeleteCardShow = () => setDeleteCardShow(false);
+
+  const confirmDeleteCard = () => {
+    const { cardId, imageUrl, price } = cardToDelete;
+
+    setPickedCards((prev) => {
+      const existingCard = prev.find((item) => item.cardId === cardId);
+      if (!existingCard) return prev;
+
+      const updatedCards = existingCard.quantity > 1
+        ? prev.map((item) =>
+          item.cardId === cardId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        : prev.filter((item) => item.cardId !== cardId);
+
+      // Update total price
+      const newTotalPrice = updatedCards.reduce((sum, item) => {
+        return sum + item.price * item.quantity;
+      }, 0);
+
+      setTotalPrice(newTotalPrice);
+
+      return updatedCards;
+    });
+
+    setDeleteCardShow(false);
+  };
+
+  const handlePublishDeckShow = () => setPublishDeckShow(true);
   const handleClosePublishDeckShow = () => setPublishDeckShow(false);
 
   const handlePublishDeck = async () => {
@@ -87,6 +122,7 @@ function CreateDeck() {
         description: deckDescription,
         youtubeLink: youtubeLink,
         cards: pickedCards,
+        totalPrice: totalPrice.toFixed(2).toString() // Save totalPrice as string
       });
 
       console.log("Deck published successfully:", response);
@@ -97,34 +133,6 @@ function CreateDeck() {
       console.error("Error publishing deck:", error);
       alert("Error publishing deck. Please try again.");
     }
-  };
-
-  const handleDeleteCard = (card) => {
-    setCardToDelete(card);
-    setDeleteCardShow(true);
-  };
-
-  const handleCloseDeleteCardShow = () => setDeleteCardShow(false);
-
-  const confirmDeleteCard = () => {
-    const { cardId, imageUrl } = cardToDelete;
-
-    setPickedCards((prev) => {
-      const existingCard = prev.find((item) => item.cardId === cardId);
-      if (!existingCard) return prev;
-
-      if (existingCard.quantity > 1) {
-        return prev.map((item) =>
-          item.cardId === cardId
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        );
-      } else {
-        return prev.filter((item) => item.cardId !== cardId);
-      }
-    });
-
-    setDeleteCardShow(false);
   };
 
   return (
@@ -252,9 +260,7 @@ function CreateDeck() {
               ))
           )
         ) : (
-          <Col>
-            <p>No cards selected.</p>
-          </Col>
+          <p>No cards selected yet.</p>
         )}
       </div>
     </div>

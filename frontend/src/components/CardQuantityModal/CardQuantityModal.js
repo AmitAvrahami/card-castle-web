@@ -14,7 +14,8 @@ function CardQuantityModal({ show, onHide, card, onSave }) {
             onSave({
                 cardId: card.id,
                 quantity,
-                imageUrl: card.card_images?.[0]?.image_url || 'fallback_image_url'
+                imageUrl: card.card_images?.[0]?.image_url || 'fallback_image_url',
+                price: card.card_prices[0].tcgplayer_price || "0"
             });
         }
         onHide();

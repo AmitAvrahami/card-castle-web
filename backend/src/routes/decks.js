@@ -1,4 +1,5 @@
 // backend/src/routes/decks.js
+
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
@@ -33,9 +34,9 @@ router.get("/:id", async (req, res) => {
 
 // Create a new deck
 router.post("/", async (req, res) => {
-  const { userId, image, title, description, youtubeLink, cards } = req.body;
+  const { userId, image, title, description, youtubeLink, totalPrice, cards } = req.body;
   try {
-    const newDeck = new Deck({ userId, image, title, description, youtubeLink, cards });
+    const newDeck = new Deck({ userId, image, title, description, youtubeLink, totalPrice, cards });
     await newDeck.save();
     res.status(201).json(newDeck);
   } catch (error) {
@@ -46,11 +47,11 @@ router.post("/", async (req, res) => {
 
 // Update a deck by ID
 router.put("/:id", async (req, res) => {
-  const { userId, image, title, description, youtubeLink, cards } = req.body;
+  const { userId, image, title, description, youtubeLink, totalPrice, cards } = req.body;
   try {
     const updatedDeck = await Deck.findByIdAndUpdate(
       req.params.id,
-      { userId, image, title, description, youtubeLink, cards },
+      { userId, image, title, description, youtubeLink, totalPrice, cards },
       { new: true }
     );
     if (!updatedDeck) {
@@ -76,5 +77,6 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ message: "Error deleting deck" });
   }
 });
+
 
 module.exports = router;
