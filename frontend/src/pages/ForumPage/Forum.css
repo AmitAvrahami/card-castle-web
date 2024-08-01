@@ -8,10 +8,11 @@
 
 .top-decks-container {
   padding-top: 120px;
+  background-color: #ffe4c4; /* Bisque */
 }
 
 .button {
-  margin-top: 100px;
+  margin-top: 4%;
   display: flex;
   justify-content: center;
 }
@@ -24,28 +25,52 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  /* Add relative positioning */
+  background-color: rgb(254, 250, 224); /* Peach Puff */
+  border: 1px solid black; /* Light Salmon */
 }
 
 .card-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: black; /* Chocolate */
 }
 
-.card-description {
+.card-description-article {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-
-  /* Limit to 5 lines */
+  background-color: rgb(254, 250, 224);
   -webkit-box-orient: vertical;
+  color: black; /* Saddle Brown */
 }
 
 .read-more-button {
   position: absolute;
   bottom: 10px;
   right: 10px;
+  background-color: rgb(212, 163, 115);
+  border: 1px solid black;
+}
+
+.read-more-button:hover {
+  background-color: hsl(30, 53%, 80%);
+  border: 1px solid black;
+}
+
+.read-more-button:active {
+  background-color: hsl(30, 53%, 80%);
+  border: 1px solid black;
+}
+
+.create-btn {
+  background-color: rgb(212, 163, 115);
+  border: 1px solid black;
+}
+
+.create-btn:hover {
+  background-color: hsl(30, 53%, 80%);
+  border: 1px solid black;
 }
 
 .close-button {
@@ -54,6 +79,5 @@
   right: 10px;
   z-index: 10;
   /* Ensure the button is above other elements */
-  color: #000;
-  /* Optional: change color if needed */
+  color: #d2691e; /* Chocolate */
 }

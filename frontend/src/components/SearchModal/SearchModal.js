@@ -46,13 +46,14 @@ function SearchModal({ onCardClick, ...props }) {
     let filtered = cards;
 
     if (selectedType && selectedType !== "Card Type") {
-      filtered = filtered.filter(card => card.type === selectedType); // Adjust according to your card type field
+      filtered = filtered.filter((card) => card.type === selectedType); // Adjust according to your card type field
     }
 
     if (searchTerm) {
       filtered = filtered.filter(
         (card) =>
-          card.name && card.name.toLowerCase().includes(searchTerm.toLowerCase())
+          card.name &&
+          card.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
@@ -96,7 +97,7 @@ function SearchModal({ onCardClick, ...props }) {
           Search Cards
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body className="modal-body">
+      <Modal.Body className="modal-body-search">
         <Container>
           <div className="search-container">
             <Form.Group controlId="formSearch">
@@ -107,8 +108,14 @@ function SearchModal({ onCardClick, ...props }) {
                 onChange={handleSearch}
               />
             </Form.Group>
-            <CardTypeForm selectedType={selectedType} onSelect={handleTypeSelect} />
-            <SortForm selectedSort={selectedSort} onSortChange={handleSortChange} />
+            <CardTypeForm
+              selectedType={selectedType}
+              onSelect={handleTypeSelect}
+            />
+            <SortForm
+              selectedSort={selectedSort}
+              onSortChange={handleSortChange}
+            />
           </div>
           {loading ? (
             <div className="spinner-container">
@@ -117,7 +124,7 @@ function SearchModal({ onCardClick, ...props }) {
               </Spinner>
             </div>
           ) : (
-            <Row className="grid-container">
+            <Row className="grid-containe-search">
               {cardsToDisplay.length === 0 && searchTerm && (
                 <p>No cards found</p>
               )}

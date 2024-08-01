@@ -1,0 +1,66 @@
+.add-comment-modal.modal-dialog {
+  max-width: 40%;
+}
+
+.add-comment-modal .modal-header,
+.add-comment-modal .modal-footer {
+  background-color: rgb(254, 250, 224); /* צבע בהיר */
+}
+
+.add-comment-modal .modal-header {
+  border-bottom: 1px solid rgb(212, 163, 115); /* קו תחתון */
+}
+
+.add-comment-modal .modal-footer {
+  width: auto;
+  height: auto;
+  border-top: 1px solid rgb(212, 163, 115); /* קו עליון */
+}
+
+.add-comment-modal .modal-title {
+  color: rgb(212, 163, 115); /* צבע כותרת */
+}
+
+.add-comment-modal .modal-body {
+  background-color: rgb(254, 250, 224);
+  width: auto;
+  height: auto; /* צבע גוף המודל */
+}
+
+.add-comment-modal .form-label {
+  color: rgb(212, 163, 115); /* צבע התווית */
+}
+
+.add-comment-modal .form-control {
+  background-color: rgb(254, 250, 224); /* צבע השדה */
+  border: 1px solid rgb(212, 163, 115); /* גבול השדה */
+  color: rgb(212, 163, 115); /* צבע טקסט */
+}
+
+.add-comment-modal .form-control::placeholder {
+  color: rgb(212, 163, 115); /* צבע טקסט placeholder */
+}
+
+.add-comment-modal .button-primary {
+  background-color: rgb(212, 163, 115); /* צבע כפתור ראשי */
+  border-color: rgb(212, 163, 115); /* גבול כפתור ראשי */
+  color: rgb(254, 250, 224); /* צבע טקסט */
+}
+
+.add-comment-modal .button-primary:hover {
+  background-color: rgb(254, 250, 224); /* צבע כפתור ראשי בעת ריחוף */
+  border-color: rgb(212, 163, 115); /* גבול כפתור ראשי בעת ריחוף */
+  color: rgb(212, 163, 115); /* צבע טקסט בעת ריחוף */
+}
+
+.add-comment-modal .button-secondary {
+  background-color: rgb(254, 250, 224); /* צבע כפתור משני */
+  border-color: rgb(212, 163, 115); /* גבול כפתור משני */
+  color: rgb(212, 163, 115); /* צבע טקסט */
+}
+
+.add-comment-modal .button-secondary:hover {
+  background-color: rgb(212, 163, 115); /* צבע כפתור משני בעת ריחוף */
+  border-color: rgb(212, 163, 115); /* גבול כפתור משני בעת ריחוף */
+  color: rgb(254, 250, 224); /* צבע טקסט בעת ריחוף */
+}

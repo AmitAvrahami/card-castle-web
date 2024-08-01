@@ -75,7 +75,6 @@ const ShippingFormModal = ({ show, handleClose }) => {
       <Modal.Body>
         <Container className="shipping-form-container">
           <Form onSubmit={handleSubmit}>
-            {/* שדות הטופס */}
             <Form.Group controlId="formRecipientName">
               <Form.Label>Recipient Name</Form.Label>
               <Form.Control
