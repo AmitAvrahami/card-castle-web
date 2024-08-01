@@ -1,12 +1,11 @@
 .user-info-page-container {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background-color: bisque;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
 }
 
 .no-user-message {
@@ -19,7 +18,7 @@
 
 .user-info-container {
   display: flex;
-  margin-top: 10%;
+  margin-top: 7%;
 }
 
 .remove-account-btn {

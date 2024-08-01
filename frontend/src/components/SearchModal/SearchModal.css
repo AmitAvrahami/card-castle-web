@@ -19,28 +19,24 @@
 /* Override Bootstrap modal width */
 .modal-dialog {
   max-width: var(--modal-width);
-  /* Set modal width dynamically */
   width: var(--modal-width);
-  /* Set modal width dynamically */
 }
 
 .modal-content {
   height: var(--modal-height);
-  /* Set modal content height */
 }
 
 /* Modal body styling */
-.modal-body {
+.modal-body-search {
   max-height: calc(var(--modal-height) - 100px);
-  /* Adjust height to account for header and footer */
   overflow-y: auto;
 }
 
 /* Grid container styling */
-.grid-container {
+.grid-containe-search {
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), 1fr);
-  /* Set number of columns dynamically */
+  background-color: white;
   grid-gap: var(--grid-gap);
   /* Set gap between items */
   max-width: 100%;
@@ -80,8 +76,6 @@
   }
 }
 
-
-
 /* Flex container for search input and CardTypeForm */
 .search-container {
   display: flex;
@@ -107,8 +101,6 @@
   min-width: 200px;
   /* Ensure search input doesn't get too small */
 }
-
-
 
 /* Flex container for search input, CardTypeForm, and SortForm */
 .search-container {
