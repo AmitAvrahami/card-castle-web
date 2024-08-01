@@ -12,6 +12,7 @@ import "./TopDecks.css";
 
 function TopDecks() {
   const [decks, setDecks] = useState([]);
+  const [sortOrder, setSortOrder] = useState("asc"); // Default sorting order is ascending
   const { user } = useUserContext(); // Access the user context
 
   useEffect(() => {
@@ -27,6 +28,17 @@ function TopDecks() {
 
     fetchDecks();
   }, []);
+
+  useEffect(() => {
+    if (decks.length > 0) {
+      const sortedDecks = [...decks].sort((a, b) => {
+        const priceA = parseFloat(a.totalPrice) || 0;
+        const priceB = parseFloat(b.totalPrice) || 0;
+        return sortOrder === "asc" ? priceA - priceB : priceB - priceA;
+      });
+      setDecks(sortedDecks);
+    }
+  }, [sortOrder, decks]);
 
   const handleDeleteDeck = async (deckId) => {
     if (!user) {
@@ -53,32 +65,50 @@ function TopDecks() {
           <Button variant="primary">Create New Deck</Button>
         </Link>
       </div>
+      <div className="top-decks-sort-container">
+        <label htmlFor="sort-order">Sort by price:</label>
+        <select
+          id="sort-order"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
       <Row xs={1} md={2} className="g-3 justify-content-center">
-        {decks.map((deck) => (
-          <Col key={deck._id} className="top-decks-custom-margin">
-            <Card className="top-decks-fixed-card">
-              {user && user._id === deck.userId && (
-                <CloseButton
-                  className="top-decks-close-button"
-                  onClick={() => handleDeleteDeck(deck._id)}
-                />
-              )}
-              <Link to={`/deck-details/${deck._id}`} style={{ textDecoration: "none" }}>
-                <Card.Img
-                  variant="top"
-                  src={deck.image} // Use the image URL from the deck data
-                  className="top-decks-card-img-custom"
-                />
-                <Card.Body className="top-decks-card-body">
-                  <Card.Title className="top-decks-card-title">{deck.title}</Card.Title>
-                  <Card.Text className="top-decks-card-description">
-                    {deck.description}
-                  </Card.Text>
-                </Card.Body>
-              </Link>
-            </Card>
-          </Col>
-        ))}
+        {decks.length > 0 ? (
+          decks.map((deck) => (
+            <Col key={deck._id} className="top-decks-custom-margin">
+              <Card className="top-decks-fixed-card">
+                {user && user._id === deck.userId && (
+                  <CloseButton
+                    className="top-decks-close-button"
+                    onClick={() => handleDeleteDeck(deck._id)}
+                  />
+                )}
+                <Link to={`/deck-details/${deck._id}`} style={{ textDecoration: "none" }}>
+                  <Card.Img
+                    variant="top"
+                    src={deck.image} // Use the image URL from the deck data
+                    className="top-decks-card-img-custom"
+                  />
+                  <Card.Body className="top-decks-card-body">
+                    <Card.Title className="top-decks-card-title">{deck.title}</Card.Title>
+                    <Card.Text className="top-decks-card-description">
+                      {deck.description}
+                    </Card.Text>
+                    <Card.Text className="top-decks-card-price">
+                      Price: {deck.totalPrice}$
+                    </Card.Text>
+                  </Card.Body>
+                </Link>
+              </Card>
+            </Col>
+          ))
+        ) : (
+          <p>No decks available.</p>
+        )}
       </Row>
     </div>
   );
