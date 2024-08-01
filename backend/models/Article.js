@@ -5,6 +5,7 @@ const ArticleSchema = new mongoose.Schema({
     userId: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
+    subject: { type: String, required: true },
     comments: [
         {
             userId: { type: String, required: true },

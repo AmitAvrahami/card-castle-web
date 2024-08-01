@@ -34,14 +34,14 @@ router.get("/:id", async (req, res) => {
 // Create a new article
 router.post('/', async (req, res) => {
     try {
-        const { userId, title, description } = req.body;
+        const { userId, title, description, subject } = req.body;
 
         // Add the initial comment to the comments array
         const newArticle = new Article({
             userId,
             title,
             description,
-            comments: [{ userId, comment: description }]
+            comments: [{ userId, comment: description, subject }]
         });
 
         await newArticle.save();
@@ -54,11 +54,11 @@ router.post('/', async (req, res) => {
 
 // Update an article by ID
 router.put("/:id", async (req, res) => {
-    const { title, description, comments } = req.body;
+    const { title, description, subject, comments } = req.body;
     try {
         const updatedArticle = await Article.findByIdAndUpdate(
             req.params.id,
-            { title, description, comments },
+            { title, description, subject, comments },
             { new: true }
         );
         if (!updatedArticle) {
