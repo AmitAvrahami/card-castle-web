@@ -1,4 +1,3 @@
-// backend/src/routes/article.js
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
@@ -41,16 +40,17 @@ router.post('/', async (req, res) => {
             userId,
             title,
             description,
-            comments: [{ userId, comment: description, subject }]
+            subject,
+            comments: [{ userId, comment: description }]
         });
 
         await newArticle.save();
         res.status(201).json(newArticle);
     } catch (error) {
+        console.error("Error creating article:", error);
         res.status(500).json({ error: 'Error creating article' });
     }
 });
-
 
 // Update an article by ID
 router.put("/:id", async (req, res) => {
@@ -121,6 +121,17 @@ router.delete("/:id/comments/:commentId", async (req, res) => {
     } catch (error) {
         console.error("Error deleting comment:", error);
         res.status(500).json({ message: "Error deleting comment" });
+    }
+});
+
+// Fetch articles filtered by subject
+router.get("/subject/:subject", async (req, res) => {
+    try {
+        const articles = await Article.find({ subject: req.params.subject });
+        res.json(articles);
+    } catch (error) {
+        console.error("Error fetching articles by subject:", error);
+        res.status(500).json({ message: "Error fetching articles by subject" });
     }
 });
 

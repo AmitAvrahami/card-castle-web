@@ -5,26 +5,26 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-import CloseButton from "react-bootstrap/CloseButton"; // Import CloseButton
+import CloseButton from "react-bootstrap/CloseButton";
 import NavScrollBar from "../../components/NavScrollBar/NavScrollBar";
 import CreateArticleModal from "../../components/CreateArticleModal/CreateArticleModal";
 import { useUserContext } from "../../components/context/userContext";
-import { getArticles, deleteArticle } from "../../services/articleService";
+import { getArticles, deleteArticle, getArticlesBySubject } from "../../services/articleService";
+import Form from "react-bootstrap/Form"; // Import Form
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Forum.css";
 
 function Forum() {
   const [articles, setArticles] = useState([]);
   const [createModalShow, setCreateModalShow] = useState(false);
-  const { user } = useUserContext(); // Access the user context
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const { user } = useUserContext();
 
   useEffect(() => {
-    // Fetch all articles from the article service
     const fetchArticles = async () => {
       try {
         const fetchedArticles = await getArticles();
         setArticles(fetchedArticles);
-        console.log("articles fetched:", fetchedArticles);
       } catch (error) {
         console.error("Error fetching articles:", error);
       }
@@ -52,10 +52,24 @@ function Forum() {
       setArticles((prevArticles) =>
         prevArticles.filter((article) => article._id !== articleId)
       );
-      console.log("Article deleted successfully");
     } catch (error) {
       console.error("Error deleting article:", error);
     }
+  };
+
+  const handleFilterArticles = async (subject) => {
+    try {
+      const filteredArticles = await getArticlesBySubject(subject);
+      setArticles(filteredArticles); // Update the state with filtered articles
+    } catch (error) {
+      console.error("Error filtering articles:", error);
+    }
+  };
+
+  const handleSubjectChange = (e) => {
+    const subject = e.target.value;
+    setSelectedSubject(subject);
+    handleFilterArticles(subject);
   };
 
   return (
@@ -70,6 +84,19 @@ function Forum() {
           Create Article
         </Button>
       </div>
+
+      <Form className="subject-form">
+        <Form.Group controlId="subjectSelect">
+          <Form.Label>Filter by Subject</Form.Label>
+          <Form.Control as="select" value={selectedSubject} onChange={handleSubjectChange}>
+            <option value="">All Subjects</option>
+            <option value="Deck Building">Deck Building</option>
+            <option value="Organize Duel">Organize Duel</option>
+            <option value="General Discussion">General Discussion</option>
+            <option value="News">News</option>
+          </Form.Control>
+        </Form.Group>
+      </Form>
 
       <Row xs={1} md={2} className="g-3 justify-content-center">
         {articles.map((article) => (

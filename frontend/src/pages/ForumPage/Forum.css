@@ -8,7 +8,8 @@
 
 .top-decks-container {
   padding-top: 120px;
-  background-color: #ffe4c4; /* Bisque */
+  background-color: #ffe4c4;
+  /* Bisque */
 }
 
 .button {
@@ -25,15 +26,18 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  background-color: rgb(254, 250, 224); /* Peach Puff */
-  border: 1px solid black; /* Light Salmon */
+  background-color: rgb(254, 250, 224);
+  /* Peach Puff */
+  border: 1px solid black;
+  /* Light Salmon */
 }
 
 .card-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: black; /* Chocolate */
+  color: black;
+  /* Chocolate */
 }
 
 .card-description-article {
@@ -42,7 +46,8 @@
   display: -webkit-box;
   background-color: rgb(254, 250, 224);
   -webkit-box-orient: vertical;
-  color: black; /* Saddle Brown */
+  color: black;
+  /* Saddle Brown */
 }
 
 .read-more-button {
@@ -79,5 +84,10 @@
   right: 10px;
   z-index: 10;
   /* Ensure the button is above other elements */
-  color: #d2691e; /* Chocolate */
+  color: #d2691e;
+  /* Chocolate */
+}
+
+.subject-form {
+  margin: 20px 0;
 }

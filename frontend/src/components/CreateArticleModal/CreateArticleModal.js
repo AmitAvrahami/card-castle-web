@@ -3,26 +3,26 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useUserContext } from "../context/userContext";
-import axios from "axios";
+import { createArticle } from "../../services/articleService";
 
 function CreateArticleModal({ show, onHide, setArticles }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [subject, setSubject] = useState("News");
     const [confirmModalShow, setConfirmModalShow] = useState(false);
     const { user } = useUserContext();
 
-    const handleUpload = () => {
-        const newArticle = { userId: user._id, title, description };
-        axios.post("http://localhost:5000/articles", newArticle)
-            .then((response) => {
-                setArticles((prevArticles) => [response.data, ...prevArticles]);
-                onHide();
-                setConfirmModalShow(false);  // Close the confirm modal
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.error("Error creating article:", error);
-            });
+    const handleUpload = async () => {
+        const newArticle = { userId: user._id, title, description, subject };
+        try {
+            const response = await createArticle(newArticle);
+            setArticles((prevArticles) => [response, ...prevArticles]);
+            onHide();
+            setConfirmModalShow(false); // Close the confirm modal
+            window.location.reload();
+        } catch (error) {
+            console.error("Error creating article:", error);
+        }
     };
 
     return (
@@ -51,6 +51,19 @@ function CreateArticleModal({ show, onHide, setArticles }) {
                                 onChange={(e) => setDescription(e.target.value)}
                                 placeholder="Enter the description"
                             />
+                        </Form.Group>
+                        <Form.Group controlId="formSubject" className="mt-3">
+                            <Form.Label>Subject</Form.Label>
+                            <Form.Control
+                                as="select"
+                                value={subject}
+                                onChange={(e) => setSubject(e.target.value)}
+                            >
+                                <option value="News">News</option>
+                                <option value="General Discussion">General Discussion</option>
+                                <option value="Deck Building">Deck Building</option>
+                                <option value="Organize Duel">Organize Duel</option>
+                            </Form.Control>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
