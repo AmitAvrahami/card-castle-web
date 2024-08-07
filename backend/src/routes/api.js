@@ -1,4 +1,5 @@
 // backend/src/routes/api.js
+require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
@@ -8,7 +9,9 @@ const YGO_API_URL = "https://db.ygoprodeck.com/api/v7";
 router.get("/cards", async (req, res) => {
   try {
     const query = req.query;
-    const response = await axios.get(`${YGO_API_URL}/cardinfo.php`, { params: query });
+    const response = await axios.get(`${YGO_API_URL}/cardinfo.php`, {
+      params: query,
+    });
     const cards = response.data.data;
     res.json(cards);
   } catch (error) {
@@ -16,7 +19,6 @@ router.get("/cards", async (req, res) => {
     res.status(500).send("Error fetching cards");
   }
 });
-
 
 router.get("/sets", async (req, res) => {
   try {
