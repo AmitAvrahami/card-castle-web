@@ -28,7 +28,7 @@ function SignUpPage(props) {
     e.preventDefault(); // Prevent page reload
     try {
       const response = await axios.post(
-        "http://localhost:5000/auth/signup",
+        "https://card-castle.onrender.com/auth/signup",
         newUser
       );
       setMessageType("success");

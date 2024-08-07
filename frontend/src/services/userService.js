@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/user_service";
+const API_URL = "https://card-castle.onrender.com/user_service";
 
 export const addUser = async (userData) => {
   try {

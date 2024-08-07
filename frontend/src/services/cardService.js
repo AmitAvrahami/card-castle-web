@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 // Base URL for the API
-const API_BASE_URL = 'http://localhost:5000/api'; // Adjust this URL to match your backend
+const API_BASE_URL = "https://card-castle.onrender.com/api"; // Adjust this URL to match your backend
 
 /**
  * Fetch all cards with optional search parameters.
@@ -9,13 +9,13 @@ const API_BASE_URL = 'http://localhost:5000/api'; // Adjust this URL to match yo
  * @returns {Promise<Object[]>} - A promise that resolves to the list of cards.
  */
 export const fetchCards = async (params = {}) => {
-    try {
-        const response = await axios.get(`${API_BASE_URL}/cards`, { params });
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching cards:', error);
-        throw error;
-    }
+  try {
+    const response = await axios.get(`${API_BASE_URL}/cards`, { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching cards:", error);
+    throw error;
+  }
 };
 
 /**
@@ -24,13 +24,15 @@ export const fetchCards = async (params = {}) => {
  * @returns {Promise<Object>} - A promise that resolves to the card data.
  */
 export const fetchCardByName = async (name) => {
-    try {
-        const response = await axios.get(`${API_BASE_URL}/cards`, { params: { name } });
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching card by name:', error);
-        throw error;
-    }
+  try {
+    const response = await axios.get(`${API_BASE_URL}/cards`, {
+      params: { name },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching card by name:", error);
+    throw error;
+  }
 };
 
 /**
@@ -39,13 +41,15 @@ export const fetchCardByName = async (name) => {
  * @returns {Promise<Object[]>} - A promise that resolves to the list of cards.
  */
 export const fetchCardsByArchetype = async (archetype) => {
-    try {
-        const response = await axios.get(`${API_BASE_URL}/cards`, { params: { archetype } });
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching cards by archetype:', error);
-        throw error;
-    }
+  try {
+    const response = await axios.get(`${API_BASE_URL}/cards`, {
+      params: { archetype },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching cards by archetype:", error);
+    throw error;
+  }
 };
 
 /**
@@ -54,11 +58,11 @@ export const fetchCardsByArchetype = async (archetype) => {
  * @returns {Promise<Object[]>} - A promise that resolves to the list of cards.
  */
 export const searchCards = async (params) => {
-    try {
-        const response = await axios.get(`${API_BASE_URL}/cards`, { params });
-        return response.data;
-    } catch (error) {
-        console.error('Error searching cards:', error);
-        throw error;
-    }
+  try {
+    const response = await axios.get(`${API_BASE_URL}/cards`, { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error searching cards:", error);
+    throw error;
+  }
 };

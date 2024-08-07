@@ -44,7 +44,7 @@ function Article() {
       comments.map(async (comment, index) => {
         try {
           const userResponse = await axios.get(
-            `http://localhost:5000/user_service/find/${comment.userId}`
+            `https://card-castle.onrender.com/user_service/find/${comment.userId}`
           );
           return { ...comment, userName: userResponse.data.name, index };
         } catch (error) {

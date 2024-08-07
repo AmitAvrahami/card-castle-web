@@ -19,7 +19,7 @@ export const CardsProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/cards")
+      .get("https://card-castle.onrender.com/api/cards")
       .then((response) => {
         setCards(response.data);
         setCardSets(response.data.cardSets); // Assuming response.data has cardSets

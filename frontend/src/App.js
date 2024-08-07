@@ -16,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/sets")
+      .get("https://card-castle.onrender.com/api/sets")
       .then((response) => {
         setSets(response.data);
         console.log("Sets fetched:", response.data);

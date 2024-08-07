@@ -18,7 +18,10 @@ function AddCommentModal({ show, onHide, articleId, setComments }) {
 
     const newComment = { userId: user._id, comment: message };
     axios
-      .post(`http://localhost:5000/articles/${articleId}/comments`, newComment)
+      .post(
+        `https://card-castle.onrender.com/articles/${articleId}/comments`,
+        newComment
+      )
       .then((response) => {
         setComments((prevComments) => [response.data, ...prevComments]);
         onHide();

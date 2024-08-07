@@ -10,7 +10,10 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/auth/validate", { withCredentials: true });
+        const response = await axios.get(
+          "https://card-castle.onrender.com/auth/validate",
+          { withCredentials: true }
+        );
         console.log("User fetch response:", response.data); // Debugging log
         if (response.data.status === "Success") {
           setUser(response.data.user);

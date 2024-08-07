@@ -41,7 +41,7 @@ function NavScrollBar({ cards }) {
     const validateToken = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/auth/validate",
+          "https://card-castle.onrender.com/auth/validate",
           { withCredentials: true }
         );
         if (response.data.status === "Success") {
@@ -72,7 +72,7 @@ function NavScrollBar({ cards }) {
   }, []);
 
   const handleLogout = async () => {
-    await axios.get("http://localhost:5000/auth/logout", {
+    await axios.get("https://card-castle.onrender.com/auth/logout", {
       withCredentials: true,
     });
     setUser(null);
