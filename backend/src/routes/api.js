@@ -1,9 +1,10 @@
 // backend/src/routes/api.js
+require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
 
-const YGO_API_URL = "https://db.ygoprodeck.com/api/v7";
+const YGO_API_URL = process.env.YGO_API_URL;
 
 router.get("/cards", async (req, res) => {
   try {
