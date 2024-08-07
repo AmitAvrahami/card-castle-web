@@ -17,7 +17,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: "https://card-castle.netlify.app/",
+    origin: "https://card-castle.netlify.app",
     methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
