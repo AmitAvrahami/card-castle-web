@@ -1,5 +1,4 @@
 // backend/src/index.js
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -12,13 +11,13 @@ const userServiceRouts = require("./routes/userService");
 const articlesRoutes = require("./routes/articles");
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 connectDB();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
