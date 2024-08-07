@@ -38,22 +38,28 @@ function NavScrollBar({ cards }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const validateToken = async () => {
-      try {
-        const response = await axios.get(
-          "https://card-castle.onrender.com/auth/validate",
-          { withCredentials: true }
-        );
-        if (response.data.status === "Success") {
-          setUser(response.data.user);
+    const storedUser = localStorage.getItem("user");
+    if (!user && storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else if (!user && !storedUser) {
+      const fetchUser = async () => {
+        try {
+          const response = await axios.get(
+            `https://card-castle.onrender.com/userService/find/${user._id}`,
+            { withCredentials: true }
+          );
+          if (response.data.status === "Success") {
+            setUser(response.data.user);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+          }
+        } catch (error) {
+          console.error("Error fetching user:", error);
         }
-      } catch (error) {
-        console.error("Error validating token:", error);
-      }
-    };
+      };
 
-    validateToken();
-  }, [setUser]);
+      fetchUser();
+    }
+  }, [user, setUser]);
 
   useEffect(() => {
     const handleResize = () => {
