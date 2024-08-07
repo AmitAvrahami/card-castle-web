@@ -31,6 +31,9 @@ app.use("/auth", authRoutes);
 app.use("/decks", decksRoutes);
 app.use("/user_service", userServiceRouts);
 app.use("/articles", articlesRoutes);
+app.get("/", (req, res) => {
+  res.send("Server is up and running!");
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
